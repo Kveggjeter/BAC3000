@@ -1,50 +1,17 @@
-# React + TypeScript + Vite
+# World news-map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of the world news-map webapplication. 
 
-Currently, two official plugins are available:
+Currently only a shell of the broader idea, but more detailed information will come soon. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## About this project
 
-## Expanding the ESLint configuration
+This project is being worked on soley by me. This is my bachelor project and its being conducted under the auspices of [University of south-eastern Norway](https://www.usn.no/)
+The finished project will be a automatic news-site that collects news articles from various sources, compiles and handles the information (with support of AI and webscraping) to georeference the article
+to a map. Each article from around the world will be easily visualized with the intentions of broadening our perspectives on the news image around us. 
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+A desperate traditional media, which is being outcompeted by the new wave of digital/social media, post more tabloid and clickable articles for each coming day. That makes it difficult for each and everyone of us to 
+follow the actual happenings around the world. When every frontpage is covering the American inaguration or Israel-Palestine, a lot of other important happenings around the world are given less attention. A map that visualize 
+these happenings in a broader, geographical way aims to solve that. 
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
