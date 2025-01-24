@@ -3,7 +3,6 @@ import './assets/styles/styles.css';
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker} from "react-leaflet";
 import MapTools from './components/mapUtilities/MapTools.tsx';
-import { addMarker } from './utils/AddMarker';
 
 /**
  * Map
@@ -15,7 +14,7 @@ export default function App() {
 
     return (
         <>
-            <MapTools addMarker={(x, y) => addMarker(x, y, setMarkers)} />
+            <MapTools setMarkers={setMarkers} />
             <MapContainer center ={[48.8566, 2.3522]} zoom={13}>
                 <TileLayer
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

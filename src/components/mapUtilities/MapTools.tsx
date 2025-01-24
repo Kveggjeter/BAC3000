@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import styles from '../../assets/styles/mapTools.module.css';
 
 interface MapToolsProps {
-    addMarker(locationX: number, locationY: number): void;
+    setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: string }[]>>;
 }
 
 /**
@@ -10,7 +10,7 @@ interface MapToolsProps {
  * @param addMarker
  * @constructor
  */
-export default function MapTools({ addMarker }: MapToolsProps){
+export default function MapTools({ setMarkers }: MapToolsProps) {
 
     const [inputX, setInputX] = useState<string>("");
     const [inputY, setInputY] = useState<string>("");
@@ -29,31 +29,36 @@ export default function MapTools({ addMarker }: MapToolsProps){
               (e) => setInputY(e.target.value)}/>
           <label>Location Y</label>
           <button id="search-button" className={styles.btn} onClick={
-              () => handleAddMarker(inputX, inputY, addMarker, resetInputs)}>Search</button>
+              () => handleAddMarker(inputX, inputY, setMarkers, resetInputs)}>Search</button>
       </div>
     );
 }
 
+
 /**
- *Validator, temporally
+ * Handler and validator
  * @param inputX
  * @param inputY
- * @param addMarker
+ * @param setMarkers
  * @param resetInputs
  */
 export function handleAddMarker(
     inputX: string,
     inputY: string,
-    addMarker: (locationX: number, locationY: number) => void,
+    setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: string }[]>>,
     resetInputs: () => void
 ) {
     const parsedX = parseFloat(inputX);
     const parsedY = parseFloat(inputY);
 
     if (!isNaN(parsedX) && !isNaN(parsedY)) {
-        addMarker(parsedX, parsedY);
+        setMarkers((prevMarkers) => [
+            ...prevMarkers,
+            { geocode: [parsedX, parsedY], popUp: "Her er det noe" }
+        ]);
         resetInputs();
     } else {
         alert("These gotta be real coordinates, bucko");
     }
 }
+
