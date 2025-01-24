@@ -1,18 +1,33 @@
+import { useState } from "react";
 import './assets/styles/styles.css';
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer} from "react-leaflet";
+import { MapContainer, TileLayer, Marker} from "react-leaflet";
+import MapTools from './components/mapUtilities/MapTools.tsx';
+import { addMarker } from './utils/AddMarker';
 
+/**
+ * Map
+ * @constructor
+ */
 export default function App() {
-    return (
-        <MapContainer center ={[48.8566, 2.3522]} zoom={13}>
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
 
-        </MapContainer>
+    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: string }[]>([]);
+
+    return (
+        <>
+            <MapTools addMarker={(x, y) => addMarker(x, y, setMarkers)} />
+            <MapContainer center ={[48.8566, 2.3522]} zoom={13}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {markers.map((marker, index) => (
+                    <Marker key={index} position={marker.geocode}></Marker>
+                ))}
+            </MapContainer>
+        </>
     )
-}
+};
 
 /*
 
