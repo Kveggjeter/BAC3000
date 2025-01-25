@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.LocationApp {
+    z-index: 101 !important;
+}
+
 
 * {
     box-sizing: border-box;
