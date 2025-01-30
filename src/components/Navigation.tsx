@@ -1,24 +1,37 @@
 import styles from '../assets/styles/navigation.module.css';
+import compassLogo from '../assets/images/compass.png';
+import aboutUs from '../assets/images/aboutUs.png';
+import news from '../assets/images/news.png';
+import signIn from '../assets/images/signIn.png';
+import filter from '../assets/images/filter.png';
 
 export default function Navigation() {
-    const today: string = new Date().toLocaleDateString('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-    });
+
     return (
         <div id="main-content" className={styles.mainContent}>
             <nav className={styles.navBar}>
                 <div className={styles.navContent}>
-                    <div className={styles.dto}>
-                        <a>{today}</a>
+                    <div className={styles.title}>
+                        <img className={styles.logo} id="compassLogo" src={compassLogo} />
+                        <a>News compass</a>
                     </div>
                     <ul className={styles.navLinks}>
-                        <li><a href="/" className={styles.navItem}>Home</a></li>
-                        <li><a href="/news" className={styles.navItem}>News</a></li>
-                        <li><a href="/about" className={styles.navItem}>About us</a></li>
-                        <li><a href="/login" className={styles.navItem}>Login</a></li>
+                        <li className={styles.navItem} id="signIn">
+                            <img className={styles.logo} id="signInLogo" src={signIn} />
+                            <a href="/" className={styles.signInText}>Sign in</a>
+                        </li>
+                        <li className={styles.navItem} id="news">
+                            <img className={styles.logo} id="newsLogo" src={news} />
+                            <a href="/news" className={styles.newsText}>News</a>
+                        </li>
+                        <li className={styles.navItem} id="aboutUs">
+                            <img className={styles.logo} id="aboutUsLogo" src={aboutUs} />
+                            <a href="/about" className={styles.aboutUsText}>About us</a>
+                        </li>
+                        <li className={styles.navItem} id="filer">
+                            <img className={styles.logo} id="filterLogo" src={filter} />
+                            <a href="/login" className={styles.filterText}>Filter</a>
+                        </li>
                     </ul>
                 </div>
             </nav>
