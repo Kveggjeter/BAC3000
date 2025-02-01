@@ -1,4 +1,4 @@
-import { useState } from "react";
+import {ReactNode, useState} from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
@@ -14,7 +14,8 @@ import MarkerClusterGroup from "react-leaflet-cluster";
  */
 export default function MapComponent() {
 
-    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: string }[]>([]);
+    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: ReactNode }[]>([]);
+
 
     const customIcon = new Icon ( {
         iconUrl : locationIconUrl,

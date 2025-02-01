@@ -42,3 +42,50 @@
     font-weight: 900;
     font-size: 1.5rem;
 }
+
+.leaflet-popup-content-wrapper {
+    background: rgba(255, 255, 255, 0.8);/
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 15px;
+    color: #333;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.leaflet-popup-tip {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    height: 250px;
+    width: 300px;
+    max-width: 300px;
+    max-height: 250px;
+    overflow-y: scroll;
+    background-color: white;
+    border: 0.5px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.title {
+    margin-left: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 3px solid #ccc;
+}
+
+.link {
+    font-size: 10px;
+}
+
+.articleImg {
+    width: 280px;
+}

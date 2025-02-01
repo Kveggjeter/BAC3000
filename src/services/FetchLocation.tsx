@@ -1,9 +1,12 @@
-import {LocationXY} from "../assets/types.ts";
-
-export const FetchLocation = async (): Promise<LocationXY> => {
-    const res = await fetch("http://localhost:8080/location");
-    if (!res.ok) {
-        throw new Error(`Error: ${res.status} ${res.statusText}`);
+export async function FetchLocation() {
+    try {
+        const response = await fetch("http://localhost:8080/location");
+        if (!response.ok) {
+            throw new Error("Network response was not ok.");
+        }
+        return await response.json();
+    } catch (error) {
+        console.error("Error with fetching location-data", error);
+        return [];
     }
-    return await res.json();
-};
+}
