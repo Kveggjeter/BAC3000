@@ -2,6 +2,7 @@ import { useState, Dispatch, SetStateAction } from "react";
 import styles from '../../assets/styles/mapTools.module.css';
 import {FetchLocation} from "../../services/FetchLocation.tsx";
 
+
 interface MapToolsProps {
     setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: string }[]>>;
 }
@@ -82,4 +83,7 @@ export function handleAddMarker(
         alert("These gotta be real coordinates, bucko");
     }
 }
+
+
+
 

@@ -190,7 +190,9 @@ ul li a:active{
 }
 
 .link {
-    margin-bottom: 5px;}font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    margin-bottom: 5px;
+    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+}
 
 .newsPage.active {
     max-height: 500px;

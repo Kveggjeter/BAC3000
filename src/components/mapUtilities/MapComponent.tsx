@@ -2,7 +2,10 @@ import { useState } from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
-import {MapContainer, TileLayer, Marker} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import {Icon} from "leaflet";
+import locationIconUrl from "../../assets/images/location.png";
+import MarkerClusterGroup from "react-leaflet-cluster";
 
 
 /**
@@ -13,6 +16,12 @@ export default function MapComponent() {
 
     const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: string }[]>([]);
 
+    const customIcon = new Icon ( {
+        iconUrl : locationIconUrl,
+        iconSize : [38, 38]
+    })
+
+
     return (
         <>
             <MapTools setMarkers={setMarkers} />
@@ -21,9 +30,14 @@ export default function MapComponent() {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
+
+                <MarkerClusterGroup>
                 {markers.map((marker, index) => (
-                    <Marker key={index} position={marker.geocode}></Marker>
+                    <Marker key={index} position={marker.geocode} icon={customIcon}>
+                        <Popup>{marker.popUp}</Popup>
+                    </Marker>
                 ))}
+                    </MarkerClusterGroup>
             </MapContainer>
         </>
     )
