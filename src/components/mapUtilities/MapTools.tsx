@@ -1,6 +1,9 @@
 import { useState, Dispatch, SetStateAction, ReactNode } from "react";
 import styles from '../../assets/styles/mapTools.module.css';
-import { FetchLocation } from "../../services/FetchLocation.tsx";
+import { GetAPI } from "../../services/getAPI.tsx";
+import {ArticleData} from "../../assets/types/ArticleData.ts";
+import {handleAddMarker} from "./handleAddMarker.ts";
+import {generatePopup} from "./generatePopup.tsx";
 
 interface MapToolsProps {
     setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: ReactNode }[]>>;
@@ -20,29 +23,30 @@ export default function MapTools({ setMarkers }: MapToolsProps) {
         setInputY("");
     };
 
-    const fetchAndAddMarkers = async () => {
+    const addPoint = async () => {
         try {
-            const data = await FetchLocation();
+            const data = await GetAPI() as ArticleData[];
 
-            if (!Array.isArray(data)) {
-                throw new Error("Invalid data format received from backend");
-            }
+            data.forEach(article => {
+                const card = generatePopup(article);
 
-            data.forEach((marker: { x: number; y: number; html: string }) => {
+                const randomX = Math.floor(Math.random() * 59) + 2;
+                const randomY = Math.floor(Math.random() * 59) + 2;
+
                 handleAddMarker(
-                    marker.x.toString(),
-                    marker.y.toString(),
-                    marker.html,
+                    randomX.toString(),
+                    randomY.toString(),
+                    card,
                     setMarkers,
-                    () => {}
+                    () => {
+                    }
                 );
             });
 
         } catch (error) {
-            console.error("Error fetching location from backend:", error);
-            alert("Could not fetch location from the server.");
+            console.error(error);
         }
-    };
+    }
 
     return (
         <div id="interaction-box" className={styles.interactionBox}>
@@ -53,41 +57,10 @@ export default function MapTools({ setMarkers }: MapToolsProps) {
             <button id="search-button" className={styles.btn} onClick={() => handleAddMarker(inputX, inputY, "", setMarkers, resetInputs)}>
                 Search
             </button>
-            <button id="fetch-button" className={styles.btn} onClick={fetchAndAddMarkers}>
+            <button id="fetch-button" className={styles.btn} onClick={addPoint}>
                 Fetch
             </button>
         </div>
     );
 }
 
-/**
- * Handler and validator
- * @param inputX
- * @param inputY
- * @param html
- * @param setMarkers
- * @param resetInputs
- */
-export function handleAddMarker(
-    inputX: string,
-    inputY: string,
-    html: string,
-    setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: ReactNode }[]>>,
-    resetInputs: () => void
-) {
-    const parsedX = parseFloat(inputX);
-    const parsedY = parseFloat(inputY);
-
-    if (!isNaN(parsedX) && !isNaN(parsedY)) {
-        setMarkers((prevMarkers) => [
-            ...prevMarkers,
-            {
-                geocode: [parsedX, parsedY],
-                popUp: <div dangerouslySetInnerHTML={{ __html: html }} />,
-            },
-        ]);
-        resetInputs();
-    } else {
-        alert("These gotta be real coordinates, bucko");
-    }
-}

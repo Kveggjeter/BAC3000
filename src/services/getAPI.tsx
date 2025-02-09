@@ -1,6 +1,6 @@
-export async function FetchLocation() {
+export async function GetAPI() {
     try {
-        const response = await fetch("http://localhost:8080/location");
+        const response = await fetch("http://localhost:8080/news");
         if (!response.ok) {
             throw new Error("Network response was not ok.");
         }
@@ -10,3 +10,4 @@ export async function FetchLocation() {
         return [];
     }
 }
+
