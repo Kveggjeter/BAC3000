@@ -4,6 +4,7 @@ import { GetAPI } from "../../services/getAPI.tsx";
 import {ArticleData} from "../../assets/types/ArticleData.ts";
 import {handleAddMarker} from "./handleAddMarker.ts";
 import {generatePopup} from "./generatePopup.tsx";
+import {geoRef} from "./geoRef.ts";
 
 interface MapToolsProps {
     setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: ReactNode }[]>>;
@@ -27,26 +28,31 @@ export default function MapTools({ setMarkers }: MapToolsProps) {
         try {
             const data = await GetAPI() as ArticleData[];
 
-            data.forEach(article => {
+            for (const article of data) {
                 const card = generatePopup(article);
+                const city: string = article.city;
 
-                const randomX = Math.floor(Math.random() * 59) + 2;
-                const randomY = Math.floor(Math.random() * 59) + 2;
+                const coordinates = await geoRef(city);
+
+                if (!coordinates) {
+                    console.warn(`Skipping article: No coordinates found for city "${city}"`);
+                    continue;
+                }
 
                 handleAddMarker(
-                    randomX.toString(),
-                    randomY.toString(),
+                    coordinates.lat.toString(),
+                    coordinates.lon.toString(),
                     card,
                     setMarkers,
-                    () => {
-                    }
+                    () => {}
                 );
-            });
+            }
 
         } catch (error) {
-            console.error(error);
+            console.error("Error in addPoint:", error);
         }
-    }
+    };
+
 
     return (
         <div id="interaction-box" className={styles.interactionBox}>

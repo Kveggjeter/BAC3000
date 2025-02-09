@@ -4,4 +4,5 @@ export interface ArticleData {
     id: string;
     sourceName: string;
     imgUrl: string;
+    city: string;
 }
