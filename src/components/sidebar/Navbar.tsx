@@ -30,26 +30,25 @@ export default function Navbar({show}: ShowType) {
                 <li>
                     <Link to='/' className='active'>
                         <FaSignInAlt />
-                        Sign in</Link>
+                        <span className="liText">Sign in</span></Link>
                 </li>
-                <li>
+                <li className="newsDiv">
                     <a className='active' onClick={() => {setShowNews(!showNews)}}>
                         <LuNewspaper />
-                        News</a>
+                        <span className="liText">News</span></a>
                 </li>
                 <div className={showNews ? 'newsPage active' : 'newsPage'}>
                     <NewsCard/>
                 </div>
                 <li><a>
                         <RiInfoCardLine />
-                        About us
+                        <span className="liText">About us</span>
                 </a>
                 </li>
-
                 <li>
                     <a className='active' onClick={() => setShowFilter(!showFilter)}>
                         <CiFilter />
-                        Filter</a>
+                        <span className="liText">Filter</span></a>
                 </li>
                 <div className={showFilter ? 'filter active' : 'filter'}>
                     <li className="filterHeader">

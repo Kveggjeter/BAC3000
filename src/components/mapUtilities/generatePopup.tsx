@@ -15,7 +15,7 @@ export function GeneratePopup(article: ArticleData): ReactNode {
             <span className="article">{summary}</span>
             <a className="link" href={link}>{sourceName}</a>
             <a href={link}>
-            <img className="articleImg" alt="Image" src={imgUrl} />
+                <img className="articleImg" alt="Image" src={imgUrl} />
             </a>
         </div>
     );
