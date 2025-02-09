@@ -2,9 +2,10 @@ import { useState, Dispatch, SetStateAction, ReactNode } from "react";
 import styles from '../../assets/styles/mapTools.module.css';
 import { GetAPI } from "../../services/getAPI.tsx";
 import {ArticleData} from "../../assets/types/ArticleData.ts";
-import {handleAddMarker} from "./handleAddMarker.ts";
-import {generatePopup} from "./generatePopup.tsx";
-import {geoRef} from "./geoRef.ts";
+import {handleAddMarker} from "./HandleAddMarker.ts";
+import {geoRef} from "./GeoRef.ts";
+import {GeneratePopup} from "./generatePopup.tsx";
+
 
 interface MapToolsProps {
     setMarkers: Dispatch<SetStateAction<{ geocode: [number, number]; popUp: ReactNode }[]>>;
@@ -29,7 +30,7 @@ export default function MapTools({ setMarkers }: MapToolsProps) {
             const data = await GetAPI() as ArticleData[];
 
             for (const article of data) {
-                const card = generatePopup(article);
+                const card = GeneratePopup(article);
                 const city: string = article.city;
 
                 const coordinates = await geoRef(city);

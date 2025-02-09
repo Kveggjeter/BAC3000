@@ -1,7 +1,7 @@
 import {ArticleData} from "../../assets/types/ArticleData.ts";
 import {ReactNode} from "react";
 
-export function generatePopup(article: ArticleData): ReactNode {
+export function GeneratePopup(article: ArticleData): ReactNode {
 
     const title = article.title;
     const summary = article.summary;
@@ -14,7 +14,9 @@ export function generatePopup(article: ArticleData): ReactNode {
             <span className="title" id="title">{title}</span>
             <span className="article">{summary}</span>
             <a className="link" href={link}>{sourceName}</a>
+            <a href={link}>
             <img className="articleImg" alt="Image" src={imgUrl} />
+            </a>
         </div>
     );
 }

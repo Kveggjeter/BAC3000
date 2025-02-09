@@ -27,9 +27,7 @@ export default function App() {
                     {showNav ? <IoMdArrowDropleft /> : <IoMdArrowDropright />}
                 </div> )}
                 <MapComponent/>
-                <div className="main">
                     <Routes></Routes>
-                </div>
             </Router>
         </>
     )

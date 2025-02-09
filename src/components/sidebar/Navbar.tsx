@@ -2,12 +2,12 @@ import { useState } from 'react'
 import logo from '../../assets/images/compass.png'
 import region from '../../assets/images/region.png'
 import categories from '../../assets/images/categories.png'
-import placeholder from '../../assets/images/placeholderNews.jpg'
 import { Link } from 'react-router-dom'
 import { FaSignInAlt } from "react-icons/fa";
 import { LuNewspaper } from "react-icons/lu";
 import { RiInfoCardLine } from "react-icons/ri";
 import { CiFilter } from "react-icons/ci";
+import {NewsCard} from "../mapUtilities/NewsCard.tsx";
 
 interface ShowType {
     show: boolean;
@@ -38,10 +38,7 @@ export default function Navbar({show}: ShowType) {
                         News</a>
                 </li>
                 <div className={showNews ? 'newsPage active' : 'newsPage'}>
-                    <a className="newsTitle">Here something happend</a>
-                    <a className="article">Text text text and more text good text shit man cool text good text OMFG text</a>
-                    <a className="link">Link to some funny place</a>
-                    <img src={placeholder} alt="Placeholder" className="placeholder" />
+                    <NewsCard/>
                 </div>
                 <li><a>
                         <RiInfoCardLine />

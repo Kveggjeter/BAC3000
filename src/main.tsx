@@ -8,7 +8,6 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-
 /**
  * <MapTools setMarkers={function(): void {
  *             throw new Error('Function not implemented.');
