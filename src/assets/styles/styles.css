@@ -1,0 +1,91 @@
+.App {
+    font-family: Verdana, Geneva, Tahoma, Verdana, sans-serif;
+    text-align: center;
+}
+
+.LocationApp {
+    z-index: 101 !important;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    max-height: 100vh;
+}
+
+/* Sizing of map-container */
+.leaflet-container {
+    height: 100vh;
+    z-index: 0;
+}
+
+/* The zoom button, just so I have it for later */
+
+.leaflet-control-container {
+    position: absolute;
+    right: 56px
+}
+
+.clusterIcon {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: white;
+    transform: translate(-25%, -25%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+
+.leaflet-popup-content-wrapper {
+    background: rgba(255, 255, 255, 0.8);/
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 15px;
+    color: #333;
+    padding: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.leaflet-popup-tip {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    height: 250px;
+    width: 300px;
+    max-width: 300px;
+    max-height: 250px;
+    overflow-y: scroll;
+    background-color: white;
+    border: 0.5px solid #ccc;
+    border-radius: 5px;
+
+}
+
+.title {
+    margin-left: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    border-bottom: 3px solid #ccc;
+}
+
+.link {
+    font-size: 10px;
+}
+
+.articleImg {
+    width: 280px;
+}

@@ -1,35 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {BrowserRouter as Router, Routes} from 'react-router-dom'
+import './assets/styles/appStyle.css'
+import Navbar from './components/sidebar/Navbar.tsx'
+import MapComponent from './components/mapUtilities/MapComponent.tsx'
+import {IoMdArrowDropleft, IoMdArrowDropright} from "react-icons/io";
 
-function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+export default function App() {
+    const [ showNav, setShowNav ] = useState(false);
+    const [isVisible, setIsVisible] = useState<boolean>(true);
+
+    const toggleClick = () => {
+        setIsVisible(false);
+        setShowNav(!showNav);
+
+        setTimeout(() => setIsVisible(true), 1000);
+    }
+
+    return (
+        <>
+            <Router>
+                <Navbar show={showNav}/>
+                {isVisible && (
+                <div className={showNav ? 'toggle active' : 'toggle'} onClick={toggleClick}>
+                    {showNav ? <IoMdArrowDropleft /> : <IoMdArrowDropright />}
+                </div> )}
+                <MapComponent/>
+                <div className="main">
+                    <Routes></Routes>
+                </div>
+            </Router>
+        </>
+    )
 }
-
-export default App
