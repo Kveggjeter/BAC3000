@@ -2,7 +2,7 @@ import {ReactNode, useState} from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
-import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, Popup, LayersControl} from "react-leaflet";
 import {Icon, divIcon, point} from "leaflet";
 import locationIconUrl from "../../assets/images/location.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
@@ -11,7 +11,8 @@ import {Cluster} from "../../assets/types/map/Cluster.ts";
 /**
  * Map component, decides how everything will look like and what attributes they should have.
  * Here we decide the size of icons, cluster and what map is visible.
- *
+ * TODO: Toggle for dark and lightmode with baselayer
+ * Source: https://egghead.io/lessons/react-add-a-layerscontrol-toggle-to-switch-between-tilelayer-basemaps-in-react-leaflet
  * Further docs will come soon
  * @constructor
  */
@@ -39,26 +40,36 @@ export default function MapComponent() {
         });
     };
 
+    const { BaseLayer } = LayersControl;
 
     return (
         <>
             <MapTools setMarkers={setMarkers} />
-            <MapContainer center ={[48.8566, 2.3522]} zoom={13}>
-                <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                />
-
+            <MapContainer center ={[48.8566, 2.3522]} zoom={3}>
+                <LayersControl>
+                    <BaseLayer checked name ="OSM">
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                    </BaseLayer>
+                    <BaseLayer name ="Dark">
+                        <TileLayer
+                            attribution='© OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>'
+                            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                        />
+                    </BaseLayer>
+                </LayersControl>
                 <MarkerClusterGroup
-                chunkedLoading
-                iconCreateFunction={createCustomClusterIcon}
+                    chunkedLoading
+                    iconCreateFunction={createCustomClusterIcon}
                 >
-                {markers.map((marker, index) => (
-                    <Marker key={index} position={marker.geocode} icon={customIcon}>
-                        <Popup>{marker.popUp}</Popup>
-                    </Marker>
-                ))}
-                    </MarkerClusterGroup>
+                    {markers.map((marker, index) => (
+                        <Marker key={index} position={marker.geocode} icon={customIcon}>
+                            <Popup>{marker.popUp}</Popup>
+                        </Marker>
+                    ))}
+                </MarkerClusterGroup>
             </MapContainer>
         </>
     )
