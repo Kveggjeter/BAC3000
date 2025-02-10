@@ -1,6 +1,9 @@
-import {ArticleData} from "../../assets/types/ArticleData.ts";
+import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {ReactNode} from "react";
 
+/**
+ * Generate the popup for each marker.
+ */
 export function GeneratePopup(article: ArticleData): ReactNode {
 
     const title = article.title;

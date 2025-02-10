@@ -6,9 +6,12 @@ import MapComponent from './components/mapUtilities/MapComponent.tsx'
 import {IoMdArrowDropleft, IoMdArrowDropright} from "react-icons/io";
 
 
-
+/**
+ * Main component for the app
+ * @constructor
+ */
 export default function App() {
-    const [ showNav, setShowNav ] = useState(false);
+    const [ showNav, setShowNav ] = useState(true);
     const [isVisible, setIsVisible] = useState<boolean>(true);
 
     const toggleClick = () => {

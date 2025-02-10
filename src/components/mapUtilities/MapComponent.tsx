@@ -6,26 +6,31 @@ import {MapContainer, TileLayer, Marker, Popup} from "react-leaflet";
 import {Icon, divIcon, point} from "leaflet";
 import locationIconUrl from "../../assets/images/location.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
-
+import {Cluster} from "../../assets/types/map/Cluster.ts";
 
 /**
- * Map
+ * Map component, decides how everything will look like and what attributes they should have.
+ * Here we decide the size of icons, cluster and what map is visible.
+ *
+ * Further docs will come soon
  * @constructor
  */
 export default function MapComponent() {
 
     const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: ReactNode }[]>([]);
 
-
+    /**
+     * Icon for markers
+     */
     const customIcon = new Icon ( {
         iconUrl : locationIconUrl,
         iconSize : [38, 38]
     })
 
-    interface Cluster {
-        getChildCount: () => number;
-    }
-
+    /**
+     * Cluster for icons (to bring several markers together)
+     * @param cluster
+     */
     const createCustomClusterIcon = (cluster: Cluster) => {
         return divIcon({
             html: `<div class="clusterIcon">${cluster.getChildCount()}</div>`,
