@@ -31,10 +31,13 @@
 }
 
 .clusterIcon {
+    background-image: url('../images/news.png');
+    background-size: cover;
+    background-position: center;
+    color: red;
     height: 3rem;
     width: 3rem;
-    border-radius: 50%;
-    background-color: white;
+    -webkit-text-stroke: 1px black;
     transform: translate(-25%, -25%);
     display: flex;
     justify-content: center;
@@ -43,8 +46,18 @@
     font-size: 1.5rem;
 }
 
+.clusterBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3rem;
+    width: 2.5rem;
+    border-top-left-radius: 25%;
+    background: rgba(255, 255, 255, 0.5);
+}
+
 .leaflet-popup-content-wrapper {
-    background: rgba(255, 255, 255, 0.8);/
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: 15px;
@@ -107,4 +120,6 @@
 .articleImg {
     width: 280px;
 }
+
+
 

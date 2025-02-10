@@ -9,16 +9,18 @@ import { RiInfoCardLine } from "react-icons/ri";
 import { CiFilter } from "react-icons/ci";
 import {NewsCard} from "./NewsCard.tsx";
 import {ShowType} from "../../assets/types/nav/ShowType.ts";
+import {AboutUs} from "./AboutUs.tsx";
 
 export default function Navbar({show}: ShowType) {
     const [showFilter, setShowFilter] = useState(false);
     const [showRegion, setShowRegion] = useState(false);
     const [showCategory, setShowCategory] = useState(false);
     const [showNews, setShowNews] = useState(false);
+    const [showAbout, setShowAbout] = useState(false);
 
     return (
         <>
-            <div className={`${show ? 'sidenav active' : 'sidenav'} ${showNews ? 'expanded' : ''}`}>
+            <div className={`${show ? 'sidenav active' : 'sidenav'} ${showNews ? 'expanded' : ''} ${showAbout ? 'expanded' : ''} `}>
                 <div className="logoContainer">
                     <img src={logo} alt="Logo" className="logo" />
                     <a>News compass</a>
@@ -39,12 +41,15 @@ export default function Navbar({show}: ShowType) {
                     <div className={showNews ? 'newsPage active' : 'newsPage'}>
                         <NewsCard/>
                     </div>
-                    <li>
-                        <a>
+                    <li className="aboutDiv">
+                        <a className='active' onClick={() => {setShowAbout(!showAbout)}}>
                             <RiInfoCardLine />
                             <span className="liText">About us</span>
                         </a>
                     </li>
+                    <div className={showAbout ? 'aboutPage active' : 'aboutPage'}>
+                        <AboutUs/>
+                    </div>
                     <li>
                         <a className='active' onClick={() => setShowFilter(!showFilter)}>
                             <CiFilter />

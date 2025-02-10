@@ -3,6 +3,7 @@
  * meant for larger traffic. It will probably be necessary to either replace the technology or
  * local-install the API with docker. Link here for later use:
  * https://github.com/mediagis/nominatim-docker
+ * or esri: https://egghead.io/lessons/react-add-placename-location-search-to-react-leaflet-with-esri-leaflet-geocoder
  * SOURCE: https://www.youtube.com/watch?v=vOPr5k_SGVA&ab_channel=DevModeVM
  * @param city
  */

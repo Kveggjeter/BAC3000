@@ -2,16 +2,20 @@ import {ReactNode, useState} from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
-import {MapContainer, TileLayer, Marker, Popup, LayersControl} from "react-leaflet";
+import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaflet";
 import {Icon, divIcon, point} from "leaflet";
-import locationIconUrl from "../../assets/images/location.png";
+import pointer from "../../assets/images/place.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
+import L from "leaflet";
+import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 /**
  * Map component, decides how everything will look like and what attributes they should have.
  * Here we decide the size of icons, cluster and what map is visible.
  * TODO: Toggle for dark and lightmode with baselayer
+ * Source: https://tmsvr.com/react-leaflet-map-performance-issues/
+ * Source: https://egghead.io/lessons/react-customize-geojson-data-markers-with-a-react-leaflet-icon-image
  * Source: https://egghead.io/lessons/react-add-a-layerscontrol-toggle-to-switch-between-tilelayer-basemaps-in-react-leaflet
  * Further docs will come soon
  * @constructor
@@ -24,8 +28,11 @@ export default function MapComponent() {
      * Icon for markers
      */
     const customIcon = new Icon ( {
-        iconUrl : locationIconUrl,
-        iconSize : [38, 38]
+        iconUrl: pointer,
+        iconSize: [72, 72],
+        popupAnchor: [0, -30],
+        shadowUrl: markerShadow,
+        shadowAnchor: [13, 28]
     })
 
     /**
@@ -34,18 +41,27 @@ export default function MapComponent() {
      */
     const createCustomClusterIcon = (cluster: Cluster) => {
         return divIcon({
-            html: `<div class="clusterIcon">${cluster.getChildCount()}</div>`,
+            html:
+                `<div class="clusterIcon"><div class="clusterBox">
+                        ${cluster.getChildCount()}             
+                 </div></div>`,
             className: "custom-marker-cluster",
-            iconSize: point(33, 33, true)
+            iconSize: point(66, 66, true)
         });
     };
+
 
     const { BaseLayer } = LayersControl;
 
     return (
         <>
             <MapTools setMarkers={setMarkers} />
-            <MapContainer center ={[48.8566, 2.3522]} zoom={3}>
+            <MapContainer
+                center ={[48.8566, 2.3522]}
+                zoom={3}
+                maxBounds={L.latLngBounds(new L.LatLng(85, -210), new L.LatLng(-85, 210))}
+                maxBoundsViscosity={0.5}
+                >
                 <LayersControl>
                     <BaseLayer checked name ="OSM">
                         <TileLayer
