@@ -135,7 +135,6 @@ ul li a:active{
     margin-left: 10px;
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
 }
 
@@ -256,6 +255,7 @@ ul li a:active{
 .aboutPage {
         max-height: 0;
         opacity: 0;
+        overflow: hidden;
 }
 
 .aboutPage.active {
@@ -292,6 +292,7 @@ ul li a:active{
 .aboutDiv {
     margin-bottom: -10px;
 }
+
 
 /*  Scrollbar source: https://css-tricks.com/classy-and-cool-custom-css-scrollbars-a-showcase/             */
 ::-webkit-scrollbar {
