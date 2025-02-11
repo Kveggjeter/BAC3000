@@ -1,7 +1,6 @@
 import {GetAPI} from "../../services/getAPI.tsx";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GeneratePopup} from "../../components/mapUtilities/GeneratePopup.tsx";
-import {GeoRef} from "./GeoRef.ts";
 import {HandleAddMarker} from "./HandleAddMarker.ts";
 import {SetMarkerProps} from "../../assets/types/map/SetMarkerProps.ts";
 
@@ -17,16 +16,17 @@ export async function AddPoint({ setMarkers }: SetMarkerProps): Promise<void> {
         for (const article of data) {
             const card = GeneratePopup(article);
             const city: string = article.city;
-            const coordinates = await GeoRef(city);
+            const x: number = article.x;
+            const y: number = article.y;
 
-            if (!coordinates) {
+            if (!x&&y) {
                 console.warn(`Skipping article: No coordinates found for city "${city}"`);
                 continue;
             }
 
             HandleAddMarker(
-                coordinates.lat,
-                coordinates.lon,
+                x,
+                y,
                 card,
                 { setMarkers }
             );
