@@ -7,7 +7,7 @@ import {Icon, divIcon, point} from "leaflet";
 import pointer from "../../assets/images/place.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-import L from "leaflet";
+// import L from "leaflet";
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 
 /**
@@ -59,8 +59,8 @@ export default function MapComponent() {
             <MapContainer
                 center ={[48.8566, 2.3522]}
                 zoom={3}
-                maxBounds={L.latLngBounds(new L.LatLng(85, -210), new L.LatLng(-85, 210))}
-                maxBoundsViscosity={0.5}
+               // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
+                // maxBoundsViscosity={0.5}
                 >
                 <LayersControl>
                     <BaseLayer checked name ="OSM">

@@ -16,18 +16,26 @@ export function NewsCard() {
             .catch((error) => console.error("Error fetching articles:", error));
     }, []);
 
+    if (!data || data.length === 0) {
+        return <div>Nothing to show as of now, please wait or reload...</div>;
+    }
+
     return (
         <>
-            {data.map((article) => (
-                <div key={article.id} className="newsCard">
-                    <p className="newsTitle">{article.title}</p>
-                    <p className="article">{article.summary}</p>
-                    <a className="link" href={article.id}>Source: {article.sourceName}</a>
-                    <a href={article.id}>
-                        <img className="placeholder" alt="Image" src={article.imgUrl} />
-                    </a>
-                </div>
-            ))}
+            {data.map((article) => {
+                if (!article) return null;
+                const {id, title, summary, sourceName, imgUrl} = article;
+                return (
+                    <div key={id} className="newsCard">
+                        <p className="newsTitle">{title}</p>
+                        <p className="article">{summary}</p>
+                        <a className="link" href={id}>Source: {sourceName}</a>
+                        <a href={id}>
+                            <img className="placeholder" alt="Image" src={imgUrl}/>
+                        </a>
+                    </div>
+                );
+            })}
         </>
     );
 }

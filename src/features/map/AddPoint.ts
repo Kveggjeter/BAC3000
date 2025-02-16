@@ -14,12 +14,13 @@ export async function AddPoint({ setMarkers }: SetMarkerProps): Promise<void> {
         const data = await GetAPI() as ArticleData[];
 
         for (const article of data) {
+            if(!article) continue;
             const card = GeneratePopup(article);
             const city: string = article.city;
             const x: number = article.x;
             const y: number = article.y;
 
-            if (!x&&y) {
+            if (!x || !y)  {
                 console.warn(`Skipping article: No coordinates found for city "${city}"`);
                 continue;
             }

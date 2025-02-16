@@ -12,6 +12,7 @@ export function GeneratePopup(article: ArticleData): ReactNode {
     const sourceName = article.sourceName;
     const imgUrl = article.imgUrl;
 
+
     return (
         <div className="popup">
             <span className="title" id="title">{title}</span>
