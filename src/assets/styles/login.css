@@ -10,7 +10,15 @@
     background-color: rgba(255,255,255,0.9);
     background-blend-mode: lighten;
     background-size: cover;
-    z-index: 1;
+    z-index: 3;
+}
+
+.pointer {
+    width: 60px;
+    position: fixed;
+    opacity: 0.5;
+    animation: 5s move linear infinite;
+    transition: all 5s ease-in-out;
 }
 
 /* Box in the middle */
@@ -38,7 +46,7 @@
     z-index: -1;
     border-radius: 10px;
     padding: 3px;
-    animation: 200s spin linear infinite;
+    animation: 150s spin linear infinite;
 }
 .containerBox::before {
     filter: blur(1.5rem);
@@ -84,7 +92,7 @@
     z-index: 10;
 }
 
-#loginBtn {
+.btn {
     position: relative;
     display: flex;
     justify-content: center;
@@ -97,7 +105,7 @@
     background-color: #75ABBC;
 }
 
-#loginBtn::after, #loginBtn::before {
+.btn::after, .btn::before {
     content: "";
     position: absolute;
     border: none;
@@ -106,32 +114,94 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    background-image: conic-gradient(from var(--angle), transparent 0%, #071013, #126736);
+    background-image: conic-gradient(from var(--angle), transparent 30%, #071013, #126736);
     z-index: -2;
     border-radius: 10px;
 }
 
-#loginBtn:hover::after {
-    padding: 1.5px;
+.btn:hover::after {
+    padding: 1.5px 3px 1.5px ;
     animation: 3s spin linear infinite;
     transition: all 0.5s ease-in-out;
 }
 
-#loginBtn::before:hover {
+.btn::before:hover {
     filter: blur(1.5rem);
     opacity: 0.2;
 }
 
-#loginBtn:hover {
+.btn:hover {
     transition: all 0.5s ease-in-out;
     background-color: white;
     cursor: pointer;
 }
+
+#loginbtn {
+    color: white;
+}
+
+#loginbtn:hover {
+    color: black;
+}
+
+
+
+
 /* Information part and signup */
 .divider {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     height: 100%;
     width: 50%;
-    border-left: 1px solid #ccc;
+    box-shadow: -0.5px 0px 8px 1px #aaaaaa;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    background-image: linear-gradient(20deg, #75ABBC, #23B5D3);
+    border-left: 3px rgba(255, 255, 255, 0.6);
+}
+
+.infoBox {
+    display: flex;
+    height: 160px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 35px 0 35px;
+    text-align: center;
+    gap: 5px;
+}
+
+#info {
+    font-size: 32px;
+    color: white;
+    margin-bottom: 5px;
+}
+.info-text{
+    font-size: 20px;
+    color: white;
+    margin-bottom: 15px;
+}
+
+#signbtn {
+    color: black;
+    background-color: white;
+}
+
+#signbtn:hover {
+    color: white;
+    background-color: #75ABBC;
+}
+
+#signbtn::after, #signbtn::before {
+    background-image: conic-gradient(from var(--angle), transparent 30%, white);
+}
+
+#signbtn:hover::after {
+    padding: 2px 3.5px 2px;
 }
 
 /* CSS magic, source: https://www.youtube.com/watch?v=ezP4kbOvs_E&ab_channel=Coding2GO */
@@ -142,11 +212,26 @@
     inherits: false;
 }
 
+:root {
+    left: 0%;
+    right: 0%;
+}
+
 @keyframes spin {
     from {
         --angle: 0deg;
     }
     to {
         --angle: 360deg;
+    }
+}
+
+@keyframes move {
+    from {
+            left: 10%;
+            opacity: 0.5;
+    } to {
+            right: 10%;
+            opacity: 0.5;
     }
 }
