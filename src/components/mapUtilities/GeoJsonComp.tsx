@@ -34,8 +34,8 @@ export default function GeoJsonComp() {
                     const layer = L.geoJson(feature, {
                         style: {
                             fillColor: '#ABD2FA',
-                            fillOpacity: 0.6,
-                            color: '#7692FF',
+                            fillOpacity: 0.001,
+                            color: 'white',
                             weight: 2,
                         },
                     });

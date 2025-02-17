@@ -1,11 +1,9 @@
 import "../assets/styles/login.css"
-import pointer from "../assets/images/place.png"
 
 export function Login () {
 
     return (
     <div className="container">
-        <img src={pointer} alt="pointer" className="pointer"></img>
         <div className="containerBox">
             <div className="loginBox">
             <h2 id="login">LOGIN</h2>
@@ -18,6 +16,10 @@ export function Login () {
             <div className="buttonGroup">
                 <button id="loginbtn" className="btn">LOGIN</button>
             </div>
+                <span className="forgot-pw">
+                <p>Forgot</p>
+                <a id="forgot" href="/"> password?</a>
+                    </span>
             </div>
             <div className="divider">
             <h2 id="info">Get more insight</h2>

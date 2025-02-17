@@ -72,3 +72,55 @@ export default function GeoJsonComp() {
 }
 
  */
+
+/*
+import L from 'leaflet';
+import { useEffect, useRef } from 'react';
+import { useMap } from 'react-leaflet';
+import * as turf from '@turf/turf';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import { data } from '../../assets/data/countries.js';
+
+export default function GeoJsonComp() {
+    const map = useMap();
+    // To remember what polygon is active
+    const highlightLayerRef = useRef<L.GeoJSON | null>(null);
+
+
+useEffect(() => {
+    function onMapClick(e: L.LeafletMouseEvent) {
+        if (highlightLayerRef.current) {
+            map.removeLayer(highlightLayerRef.current);
+            highlightLayerRef.current = null;
+        }
+
+        const { lat, lng } = e.latlng;
+        const point = turf.point([lng, lat]);
+
+
+        for (const feature of data.features) {
+            if (turf.booleanPointInPolygon(point, feature)) {
+                const layer = L.geoJson(feature, {
+                    style: {
+                        fillColor: '#ABD2FA',
+                        fillOpacity: 0.001,
+                        color: 'white',
+                        weight: 2,
+                    },
+                });
+                layer.addTo(map);
+                highlightLayerRef.current = layer;
+                break;
+            }
+        }
+    }
+    map.on('click', onMapClick);
+    return () => {
+        map.off('click', onMapClick);
+    };
+}, [map]);
+return null;
+}
+
+ */
