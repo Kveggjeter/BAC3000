@@ -18,7 +18,13 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+
+    /* Types */
+    "typeRoots": [
+      "src/assets/types/map",
+      "node_modules/@types"
+    ]
   },
   "include": ["vite.config.ts"]
 }

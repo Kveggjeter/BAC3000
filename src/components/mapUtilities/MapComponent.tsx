@@ -7,8 +7,8 @@ import {Icon, divIcon, point} from "leaflet";
 import pointer from "../../assets/images/place.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-// import L from "leaflet";
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+import DayNightTerminator from "./DayNightTerminator.tsx";
 
 /**
  * Map component, decides how everything will look like and what attributes they should have.
@@ -59,7 +59,9 @@ export default function MapComponent() {
             <MapContainer
                 center ={[48.8566, 2.3522]}
                 zoom={3}
-               // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
+                worldCopyJump={true}
+                attributionControl={false}
+                // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >
                 <LayersControl>
@@ -76,6 +78,8 @@ export default function MapComponent() {
                         />
                     </BaseLayer>
                 </LayersControl>
+                <DayNightTerminator
+                />
                 <MarkerClusterGroup
                     chunkedLoading
                     iconCreateFunction={createCustomClusterIcon}
