@@ -9,6 +9,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
 import markerShadow from 'leaflet/dist/images/marker-shadow.png'
 import DayNightTerminator from "./DayNightTerminator.tsx";
+import GeoJsonComp from "./GeoJsonComp.tsx";
 
 /**
  * Map component, decides how everything will look like and what attributes they should have.
@@ -64,6 +65,7 @@ export default function MapComponent() {
                 // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >
+                <GeoJsonComp/>
                 <LayersControl>
                     <BaseLayer checked name ="OSM">
                         <TileLayer
@@ -78,8 +80,7 @@ export default function MapComponent() {
                         />
                     </BaseLayer>
                 </LayersControl>
-                <DayNightTerminator
-                />
+                <DayNightTerminator/>
                 <MarkerClusterGroup
                     chunkedLoading
                     iconCreateFunction={createCustomClusterIcon}
