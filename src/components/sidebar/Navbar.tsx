@@ -22,12 +22,12 @@ export default function Navbar({show}: ShowType) {
         <>
             <div className={`${show ? 'sidenav active' : 'sidenav'} ${showNews ? 'expanded' : ''} ${showAbout ? 'expanded' : ''} `}>
                 <div className="logoContainer">
-                    <img src={logo} alt="Logo" className="logo" />
+                    <img src={logo} alt="logo" className="logos" />
                     <a>News compass</a>
                 </div>
                 <ul>
                     <li>
-                        <Link to='/' className='active'>
+                        <Link to='/login' className='active'>
                             <FaSignInAlt />
                             <span className="liText">Sign in</span>
                         </Link>

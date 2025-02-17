@@ -1,11 +1,10 @@
 .logoContainer {
     display: flex;
-    flex-direction: row;
+    align-items: center;
     margin-top: 5px;
     margin-bottom: 35px;
     padding-bottom: 10px;
     border-bottom: 3px solid #ccc;
-    width: 100%;
 }
 
 .logoContainer a {
@@ -15,6 +14,10 @@
     color: grey;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
     font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+}
+
+.logos {
+    width: 60px;
 }
 
 .sidenav {
@@ -90,10 +93,6 @@ ul li a:active{
 
 .newsDiv {
     margin-bottom: -10px;
-}
-
-.logo {
-    width: 60px;
 }
 
 .main {
