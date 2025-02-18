@@ -9,7 +9,6 @@ import { Login } from './pages/login.tsx';
  */
 export default function App() {
 
-
     return (
         <>
             <Router>

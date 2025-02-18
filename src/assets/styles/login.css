@@ -92,7 +92,7 @@
     padding: 10px;
     background-color: #75ABBC;
 }
-
+/* login button and general button */
 .buttonGroup {
     position: relative;
     display: flex;
@@ -101,6 +101,10 @@
     height: 40px;
     width: 100%;
     z-index: 10;
+}
+
+.loginBox .buttonGroup {
+  margin-top: 10px;
 }
 
 .btn {
@@ -172,7 +176,6 @@
 
 /* Information part and signup */
 .divider {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;

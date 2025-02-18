@@ -4,16 +4,13 @@ import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
 import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaflet";
 import {Icon, divIcon, point} from "leaflet";
-import pointer from "../../assets/images/place.png";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'
-import DayNightTerminator from "./DayNightTerminator.tsx";
-import GeoJsonComp from "./GeoJsonComp.tsx";
-
+import CountriesComp from "./potentialComps/CountriesComp.tsx";
+// import CitiesComp from "./potentialComps/CitiesComp.tsx";
+// import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
 /**
  * Map component, decides how everything will look like and what attributes they should have.
- * Here we decide the size of icons, cluster and what map is visible.
  * TODO: Toggle for dark and lightmode with baselayer
  * Source: https://tmsvr.com/react-leaflet-map-performance-issues/
  * Source: https://egghead.io/lessons/react-customize-geojson-data-markers-with-a-react-leaflet-icon-image
@@ -23,18 +20,8 @@ import GeoJsonComp from "./GeoJsonComp.tsx";
  */
 export default function MapComponent() {
 
-    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: ReactNode }[]>([]);
-
-    /**
-     * Icon for markers
-     */
-    const customIcon = new Icon ( {
-        iconUrl: pointer,
-        iconSize: [72, 72],
-        popupAnchor: [0, -30],
-        shadowUrl: markerShadow,
-        shadowAnchor: [13, 28]
-    })
+    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: ReactNode; icon: Icon }[]>([]);
+    // const [polygonCoords, setPolygonCoords] = useState<L.LatLng[][] | null>(null);
 
     /**
      * Cluster for icons (to bring several markers together)
@@ -47,10 +34,9 @@ export default function MapComponent() {
                         ${cluster.getChildCount()}             
                  </div></div>`,
             className: "custom-marker-cluster",
-            iconSize: point(66, 66, true)
+            iconSize: point(66, 66, true),
         });
     };
-
 
     const { BaseLayer } = LayersControl;
 
@@ -65,28 +51,28 @@ export default function MapComponent() {
                 // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >
-                <GeoJsonComp/>
                 <LayersControl>
                     <BaseLayer checked name ="OSM">
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
                         />
                     </BaseLayer>
                     <BaseLayer name ="Dark">
                         <TileLayer
                             attribution='© OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>'
-                            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                            url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png"
                         />
                     </BaseLayer>
                 </LayersControl>
-                <DayNightTerminator/>
                 <MarkerClusterGroup
                     chunkedLoading
                     iconCreateFunction={createCustomClusterIcon}
+                    animateAddingMarkers: true
+                    maxClusterRadius={20}
                 >
                     {markers.map((marker, index) => (
-                        <Marker key={index} position={marker.geocode} icon={customIcon}>
+                        <Marker key={index} position={marker.geocode} icon={marker.icon}>
                             <Popup>{marker.popUp}</Popup>
                         </Marker>
                     ))}
@@ -97,6 +83,13 @@ export default function MapComponent() {
 };
 
 /*
+
+ *************** Kanskje? **********************************
+ // <CitiesComp polygonCoords={polygonCoords}/>
+ <DayNightTerminator onPolygonChange={(coords) => setPolygonCoords(coords)}/>
+
+
+
 
 Esri:
 <TileLayer
