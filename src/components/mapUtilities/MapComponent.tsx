@@ -6,7 +6,7 @@ import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaf
 import {Icon, divIcon, point} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-import CountriesComp from "./potentialComps/CountriesComp.tsx";
+// import CountriesComp from "./potentialComps/CountriesComp.tsx";
 // import CitiesComp from "./potentialComps/CitiesComp.tsx";
 // import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
 /**
@@ -37,9 +37,7 @@ export default function MapComponent() {
             iconSize: point(66, 66, true),
         });
     };
-
     const { BaseLayer } = LayersControl;
-
     return (
         <>
             <MapTools setMarkers={setMarkers} />

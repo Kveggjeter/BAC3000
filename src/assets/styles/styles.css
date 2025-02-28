@@ -58,8 +58,6 @@
 
 .leaflet-popup-content-wrapper {
     background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-radius: 15px;
     color: #333;
     padding: 10px;
@@ -76,7 +74,7 @@
 .popup {
     display: flex;
     flex-direction: column;
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     height: 250px;
     width: 300px;
     max-width: 300px;
@@ -105,12 +103,12 @@
 }
 
 
-
 .title {
     margin-left: 5px;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
     border-bottom: 3px solid #ccc;
+    font-family: Verdana, sans-serif;
 }
 
 .link {

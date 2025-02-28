@@ -10,10 +10,10 @@
 .logoContainer a {
     margin-left: 15px;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 18px;
     color: grey;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
 .logos {
@@ -22,9 +22,7 @@
 
 .sidenav {
     width: 160px;
-    background: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background-color: #f0f2f3;
     height: 100vh;
     max-height: 100vh;
     padding: 0;
@@ -59,6 +57,8 @@
 
 ul {
     padding: 0;
+    max-height: 100%;
+    overflow: hidden;
 }
 
 ul li {
@@ -67,15 +67,31 @@ ul li {
 }
 
 ul li a {
+    position: relative;
     color: black;
+    background-image: linear-gradient(transparent 100%, white, white);
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     display: block;
     padding: 10px 15px;
-    border-radius: 6px;
-    font-family: Instrument Serif, serif;
+    font-family: "Courier New", Courier, monospace;
     font-weight: lighter;
+    transition: all 0.5s ease-in-out;
 }
+
+ul li a:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    background-image: linear-gradient(20deg, #75ABBC, #23B5D3);
+    z-index: -1;
+}
+
 
 .liText {
     margin-left: 0;
@@ -87,8 +103,16 @@ ul li a svg {
 
 ul li a:hover,
 ul li a:active{
-    background: #a2aebb;
+    color: white;
     cursor: pointer;
+}
+
+ul li a:hover::before,
+ul li a:active::before {
+    opacity: 1;
+    transition: all 1s ease-in-out;
+    border-radius: 0;
+    width: 100%;
 }
 
 .newsDiv {
@@ -96,7 +120,7 @@ ul li a:active{
 }
 
 .main {
-    height: 90vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +168,7 @@ ul li a:active{
 
 .filterOptions label {
     margin-left: 10px;
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
 .filter.active {
@@ -194,11 +218,11 @@ ul li a:active{
 }
 
 .newsTitle {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
     margin-left: 5px;
     margin-top: 3px;
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Verdana, sans-serif;
     padding-bottom: 10px;
 }
 
@@ -206,7 +230,7 @@ ul li a:active{
     padding-top: 5px;
     margin-left: 5px;
     margin-right: 5px;
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     margin-bottom: 5px;
 }
 
@@ -224,7 +248,7 @@ ul li a:active{
     align-self: flex-start;
     margin-left: 5px;
     margin-bottom: 5px;
-    font-family: "JetBrains Mono ExtraLight", "Arial Narrow", Arial, sans-serif;
+    font-family: Verdana, sans-serif;
 }
 
 .newsPage.active {
@@ -260,7 +284,6 @@ ul li a:active{
 .aboutPage.active {
     max-height: 300px;
     opacity: 1;
-    overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
     border-top: 3px solid #ccc;
     z-index: 200;
@@ -308,6 +331,26 @@ ul li a:active{
     border-radius: 8px;
     background-color: #363636;
 }
+
+/* CSS magic */
+/* Sliding border */
+
+@property --backgroundColor {
+    syntax: "<image>";
+    initial-value: white;
+    inherits: false;
+}
+
+@keyframes draw {
+    from {
+        --backgroundColor: white;
+    }
+    to {
+        --backgroundColor: linear-gradient(20deg, #75ABBC, #23B5D3);
+    }
+}
+
+
 
 
 
