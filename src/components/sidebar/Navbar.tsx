@@ -1,12 +1,8 @@
 import { useState } from 'react'
-import logo from '../../assets/images/compass.png'
+import logo from '../../assets/images/logoD.png'
 import region from '../../assets/images/region.png'
 import categories from '../../assets/images/categories.png'
 import { Link } from 'react-router-dom'
-import { FaSignInAlt } from "react-icons/fa";
-import { LuNewspaper } from "react-icons/lu";
-import { RiInfoCardLine } from "react-icons/ri";
-import { CiFilter } from "react-icons/ci";
 import {NewsCard} from "./NewsCard.tsx";
 import {ShowType} from "../../assets/types/nav/ShowType.ts";
 import {AboutUs} from "./AboutUs.tsx";
@@ -23,18 +19,15 @@ export default function Navbar({show}: ShowType) {
             <div className={`${show ? 'sidenav active' : 'sidenav'} ${showNews ? 'expanded' : ''} ${showAbout ? 'expanded' : ''} `}>
                 <div className="logoContainer">
                     <img src={logo} alt="logo" className="logos" />
-                    <a>News compass</a>
                 </div>
-                <ul>
+                <ul className="genList">
                     <li>
                         <Link to='/login' className='active'>
-                            <FaSignInAlt />
                             <span className="liText">Sign in</span>
                         </Link>
                     </li>
                     <li className="newsDiv">
                         <a className='active' onClick={() => {setShowNews(!showNews)}}>
-                            <LuNewspaper />
                             <span className="liText">News</span>
                         </a>
                     </li>
@@ -43,7 +36,6 @@ export default function Navbar({show}: ShowType) {
                     </div>
                     <li className="aboutDiv">
                         <a className='active' onClick={() => {setShowAbout(!showAbout)}}>
-                            <RiInfoCardLine />
                             <span className="liText">About us</span>
                         </a>
                     </li>
@@ -52,11 +44,12 @@ export default function Navbar({show}: ShowType) {
                     </div>
                     <li>
                         <a className='active' onClick={() => setShowFilter(!showFilter)}>
-                            <CiFilter />
                             <span className="liText">Filter</span>
                         </a>
                     </li>
+                </ul>
                     <div className={showFilter ? 'filter active' : 'filter'}>
+                        <ul className="filterList">
                         <li className="filterHeader">
                             <div className="filterBox" id="regionBox"></div>
                             <img src={region} alt="Region" className="filterIcon"/>
@@ -83,8 +76,8 @@ export default function Navbar({show}: ShowType) {
                                 </li>
                             ))}
                         </ul>
+                        </ul>
                     </div>
-                </ul>
             </div>
         </>
     )

@@ -1,15 +1,17 @@
 import L from 'leaflet';
-import { useEffect, useRef } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import { useMap } from 'react-leaflet';
 import * as turf from '@turf/turf';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import { data } from '../../../assets/data/countries.js';
+import "../../../assets/styles/countryStat.css";
 
 export default function CountriesComp() {
     const map = useMap();
     // To remember what polygon is active
     const highlightLayerRef = useRef<L.GeoJSON | null>(null);
+    const [returnFact, setReturnFact] = useState<GeoJSON.Feature | null>(null);
 
     /**
      * Removes the previous highlight, adds a new highlight.
@@ -18,8 +20,11 @@ export default function CountriesComp() {
         function onMapClick(e: L.LeafletMouseEvent) {
             if (highlightLayerRef.current) {
                 map.removeLayer(highlightLayerRef.current);
+                map.panTo(e.latlng);
                 highlightLayerRef.current = null;
             }
+
+            setReturnFact(null);
 
             const { lat, lng } = e.latlng;
             const point = turf.point([lng, lat]);
@@ -41,6 +46,7 @@ export default function CountriesComp() {
                     });
                     layer.addTo(map);
                     highlightLayerRef.current = layer;
+                    setReturnFact(feature);
                     break;
                 }
             }
@@ -48,7 +54,18 @@ export default function CountriesComp() {
         map.on('click', onMapClick);
         return () => {
             map.off('click', onMapClick);
+
         };
     }, [map]);
-    return null;
+    return (
+        <>
+            {returnFact && (
+                <div className="countries">
+                    <span className="title" id="title">al</span>
+                    <span className="article">sd</span>
+                    <span>halla</span>
+                </div>
+            )}
+        </>
+    );
 }

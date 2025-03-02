@@ -6,7 +6,7 @@ import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaf
 import {Icon, divIcon, point} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-// import CountriesComp from "./potentialComps/CountriesComp.tsx";
+import CountriesComp from "./potentialComps/CountriesComp.tsx";
 // import CitiesComp from "./potentialComps/CitiesComp.tsx";
 // import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
 /**
@@ -49,6 +49,7 @@ export default function MapComponent() {
                 // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >
+                <CountriesComp/>
                 <LayersControl>
                     <BaseLayer checked name ="OSM">
                         <TileLayer

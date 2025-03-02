@@ -1,0 +1,14 @@
+.countries {
+    z-index: 10000;
+    position: fixed;
+    inset: 0;
+    width: 12rem;
+    height: 5rem;
+    max-width: 100vw;
+    max-height: 100dvh;
+    margin: auto;
+    border: 0.2rem solid #000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

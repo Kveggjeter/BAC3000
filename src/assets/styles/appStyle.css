@@ -1,30 +1,22 @@
 .logoContainer {
     display: flex;
     align-items: center;
-    margin-top: 5px;
-    margin-bottom: 35px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid #ccc;
-}
-
-.logoContainer a {
-    margin-left: 15px;
-    text-decoration: none;
-    font-size: 18px;
-    color: grey;
-    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-    font-family: Verdana, sans-serif;
+    justify-content: center;
+    overflow: hidden;
+    max-height: 120px;
+    padding: 50px 35px 0 15px;
+    background-image: linear-gradient(35deg, #75ABBC, #23B5D3);
 }
 
 .logos {
-    width: 60px;
+    width: 230px;
 }
 
 .sidenav {
     width: 160px;
     background-color: #f0f2f3;
-    height: 100vh;
-    max-height: 100vh;
+    height: 100%;
+    max-height: 100%;
     padding: 0;
     position: absolute;
     left: -100%;
@@ -43,22 +35,22 @@
 .filter {
     max-height: 0;
     opacity: 0;
-    overflow: hidden;
+    overflow: auto;
     transition: max-height 1s ease-out, opacity 0.5s ease-in;
 }
 
 .filter.active {
-    max-height: 50vh;
+    max-height: 100%;
     opacity: 1;
     border-top: 1px solid #ccc;
-    overflow: hidden;
+    overflow: auto;
 }
-
 
 ul {
     padding: 0;
-    max-height: 100%;
-    overflow: hidden;
+    max-height: 85vh;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 ul li {
@@ -76,7 +68,7 @@ ul li a {
     padding: 10px 15px;
     font-family: "Courier New", Courier, monospace;
     font-weight: lighter;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
 ul li a:before {
@@ -87,7 +79,7 @@ ul li a:before {
     width: 30%;
     height: 100%;
     opacity: 0;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     background-image: linear-gradient(20deg, #75ABBC, #23B5D3);
     z-index: -1;
 }
@@ -102,15 +94,20 @@ ul li a svg {
 }
 
 ul li a:hover,
-ul li a:active{
+ul li a:active {
     color: white;
-    cursor: pointer;
+    cursor: pointer
+}
+
+.genList li a:hover,
+.genList li a:active{
+    padding-left: 50px;
 }
 
 ul li a:hover::before,
 ul li a:active::before {
     opacity: 1;
-    transition: all 1s ease-in-out;
+    transition: all 0.3s ease-in-out;
     border-radius: 0;
     width: 100%;
 }
@@ -155,25 +152,36 @@ ul li a:active::before {
 }
 
 .filterOptions {
-    margin-left: 10px;
     max-height: 0;
     opacity: 0;
     transition: max-height 0.5s ease-out, opacity 0.3s ease-in;
 }
 
 .filterOptions.active {
-    max-height: 500px;
+    height: 100%;
+    max-height: 100%;
     opacity: 1;
 }
+
 
 .filterOptions label {
     margin-left: 10px;
     font-family: Verdana, sans-serif;
 }
 
+.filterList{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.filterList a:hover,
+.filterList a:active {
+    padding-left: 30px;
+}
+
 .filter.active {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .toggle {
@@ -217,21 +225,20 @@ ul li a:active::before {
     background-color: #fff;
 }
 
+/* *****NEWSCARD******** */
+
 .newsTitle {
     font-size: 20px;
     font-weight: bold;
-    margin-left: 5px;
+    padding: 0 10px 10px 15px;
     margin-top: 3px;
     font-family: Verdana, sans-serif;
-    padding-bottom: 10px;
+    border-bottom: 3px solid #23B5D3;
 }
 
 .article {
-    padding-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
+    padding: 15px 15px 5px;
     font-family: Helvetica, Arial, sans-serif;
-    margin-bottom: 5px;
 }
 
 .newsCard {
@@ -241,23 +248,32 @@ ul li a:active::before {
     margin-top: 15px;
     margin-bottom: 10px;
     padding-bottom: 15px;
-    border-bottom: 5px solid #ccc;
+    border-bottom: 15px solid #ccc;
 }
 
-.link {
+.newsCard .link{
+    font-size: 15px;
+    color: #23B5D3;
     align-self: flex-start;
     margin-left: 5px;
     margin-bottom: 5px;
     font-family: Verdana, sans-serif;
 }
 
+.newsCard .link:hover{
+    color: #126736;
+}
+
 .newsPage.active {
+    margin-top: 20px;
     max-height: 500px;
     opacity: 1;
 }
 
 .newsPage.active ~ * {
     filter: blur(5px);
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .placeholder {
@@ -265,11 +281,16 @@ ul li a:active::before {
     border: 2px solid #ccc;
     border-radius: 10px;
     width: 300px;
+    transition: 0.5s ease-in-out;
+}
 
+.placeholder:hover {
+    filter: blur(1px);
 }
 
 .sidenav.expanded {
     width: 350px;
+    overflow-y: hidden;
 }
 
 
@@ -278,7 +299,7 @@ ul li a:active::before {
 .aboutPage {
         max-height: 0;
         opacity: 0;
-        overflow: hidden;
+        overflow-y: auto;
 }
 
 .aboutPage.active {
@@ -290,7 +311,7 @@ ul li a:active::before {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: scroll;
+    overflow-y: auto;
     scroll-behavior: smooth;
     background-color: #fff;
     margin-top: 10px;
@@ -318,6 +339,7 @@ ul li a:active::before {
 /*  Scrollbar source: https://css-tricks.com/classy-and-cool-custom-css-scrollbars-a-showcase/             */
 ::-webkit-scrollbar {
     width: 12px;
+
 }
 
 ::-webkit-scrollbar-track {
@@ -325,6 +347,7 @@ ul li a:active::before {
     background-color: #e7e7e7;
     border: 1px solid #cacaca;
     box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+
 }
 
 ::-webkit-scrollbar-thumb {
