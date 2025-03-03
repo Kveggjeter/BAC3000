@@ -46,6 +46,7 @@ export default function MapComponent() {
                 zoom={3}
                 worldCopyJump={true}
                 attributionControl={false}
+                doubleClickZoom={false}
                 // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >

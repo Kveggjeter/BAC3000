@@ -1,4 +1,4 @@
-import {GetAPI} from "../../services/getAPI.tsx";
+import {GetArticles} from "../../services/getArticles.tsx";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GeneratePopup} from "../../components/mapUtilities/GeneratePopup.tsx";
 import {HandleAddMarker} from "./HandleAddMarker.ts";
@@ -11,9 +11,9 @@ import {customIcon} from "../../components/mapUtilities/customIcon.tsx";
  * TODO: Find some other way to always display this, probably with a usestate or something.
  */
 export async function AddPoint({ setMarkers }: SetMarkerProps): Promise<void> {
-    try {
-        const data = await GetAPI() as ArticleData[];
 
+    try {
+        const data = await GetArticles() as ArticleData[];
         for (const article of data) {
             if(!article) continue;
             const card = GeneratePopup(article);
@@ -28,7 +28,6 @@ export async function AddPoint({ setMarkers }: SetMarkerProps): Promise<void> {
                 continue;
             }
             const icon = customIcon(cyName);
-
             HandleAddMarker(
                 x,
                 y,

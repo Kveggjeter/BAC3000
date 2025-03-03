@@ -1,5 +1,5 @@
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
-import {GetAPI} from "../../services/getAPI.tsx";
+import {GetArticles} from "../../services/getArticles.tsx";
 import {useEffect, useState} from "react";
 
 /**
@@ -11,7 +11,7 @@ export function NewsCard() {
     const [data, setData] = useState<ArticleData[]>([]);
 
     useEffect(() => {
-        GetAPI()
+        GetArticles()
             .then((result) => setData(result))
             .catch((error) => console.error("Error fetching articles:", error));
     }, []);

@@ -1,23 +1,38 @@
 import L from 'leaflet';
-import {useEffect, useRef, useState} from 'react';
-import { useMap } from 'react-leaflet';
+import {MutableRefObject, useEffect, useRef, useState} from 'react';
+import {useMap} from 'react-leaflet';
 import * as turf from '@turf/turf';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-import { data } from '../../../assets/data/countries.js';
+import {data} from '../../../assets/data/countries.js';
 import "../../../assets/styles/countryStat.css";
+import {ArticleData} from "../../../assets/types/news/ArticleData.ts";
+import {GetArticles} from "../../../services/getArticles.tsx";
+import {GetCountryNum} from "../../../services/getCountryNum.tsx";
+import { dragElement } from '../../../features/map/dragFact.ts';
 
 export default function CountriesComp() {
     const map = useMap();
+    const [articles, setArticles] = useState<ArticleData[]>([]);
+    const countriesRef = useRef<HTMLDivElement | null>(null);
+
     // To remember what polygon is active
+    const country: MutableRefObject<string> = useRef("");
+    const count: MutableRefObject<number> = useRef(0);
     const highlightLayerRef = useRef<L.GeoJSON | null>(null);
     const [returnFact, setReturnFact] = useState<GeoJSON.Feature | null>(null);
+
+    useEffect(() => {
+        GetArticles()
+            .then((result) => setArticles(result))
+            .catch((error) => console.error("Error fetching articles:", error));
+    }, []);
 
     /**
      * Removes the previous highlight, adds a new highlight.
      */
     useEffect(() => {
-        function onMapClick(e: L.LeafletMouseEvent) {
+        async function onMapClick(e: L.LeafletMouseEvent) {
             if (highlightLayerRef.current) {
                 map.removeLayer(highlightLayerRef.current);
                 map.panTo(e.latlng);
@@ -25,8 +40,7 @@ export default function CountriesComp() {
             }
 
             setReturnFact(null);
-
-            const { lat, lng } = e.latlng;
+            const {lat, lng} = e.latlng;
             const point = turf.point([lng, lat]);
 
             /**
@@ -44,6 +58,16 @@ export default function CountriesComp() {
                             weight: 2,
                         },
                     });
+
+                    country.current = feature.properties.ADMIN;
+                    const tall: number = await GetCountryNum(country.current);
+                    let usTall: number = 0;
+                    let us: string = country.current;
+                    if (country.current == "United States") {
+                        us = "USA";
+                        usTall = await GetCountryNum(us);
+                    }
+                    count.current = tall + usTall;
                     layer.addTo(map);
                     highlightLayerRef.current = layer;
                     setReturnFact(feature);
@@ -56,14 +80,22 @@ export default function CountriesComp() {
             map.off('click', onMapClick);
 
         };
-    }, [map]);
+    }, [map, articles]);
+
+    useEffect(() => {
+        if (returnFact && countriesRef.current) {
+            dragElement(countriesRef.current);
+        }
+    }, [returnFact]);
     return (
         <>
             {returnFact && (
-                <div className="countries">
-                    <span className="title" id="title">al</span>
-                    <span className="article">sd</span>
-                    <span>halla</span>
+                <div className="countries" id="countries" ref={countriesRef}>
+                    <span className="country" id="country">{country.current}</span>
+                    <div className="aNumCon">
+                        <span className="newsNow">Articles: </span>
+                        <span className="newsNum">{count.current}</span>
+                    </div>
                 </div>
             )}
         </>
