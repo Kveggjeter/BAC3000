@@ -1,6 +1,7 @@
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GetArticles} from "../../services/getArticles.tsx";
 import {useEffect, useState} from "react";
+import * as React from "react";
 
 /**
  * Generates the articles shown in the navbar.
@@ -9,6 +10,11 @@ import {useEffect, useState} from "react";
  */
 export function NewsCard() {
     const [data, setData] = useState<ArticleData[]>([]);
+    const [value, setValue] = useState("");
+
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
+        setValue(e.target.value);
+    }
 
     useEffect(() => {
         GetArticles()
@@ -20,9 +26,23 @@ export function NewsCard() {
         return <div>Nothing to show as of now, please wait or reload...</div>;
     }
 
+    const filterArticle = value.trim().toLowerCase()
+    ? data.filter((article) => {
+            if (!article || !article.title || !article.summary) return null;
+        return (
+            article.title.toLowerCase().includes(value.toLowerCase()) || article.summary.toLowerCase().includes(value.toLowerCase())
+            );
+        })
+        : data;
+
+
     return (
         <>
-            {data.map((article) => {
+            <div className="nwp">
+                <label className="searchLabel">Type a word of interest! {'\u{1F50E}'}</label>
+                <input type="text" className="search" placeholder="Search.." value={value} onChange={handleChange} autoFocus></input>
+            </div>
+            {filterArticle.map((article) => {
                 if (!article) return null;
                 const {id, title, summary, sourceName, imgUrl} = article;
                 return (
