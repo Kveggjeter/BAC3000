@@ -1,12 +1,13 @@
-import {ReactNode, useState} from "react";
+import {useState} from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
 import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaflet";
-import {Icon, divIcon, point} from "leaflet";
+import {divIcon, point} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
 import CountriesComp from "./potentialComps/CountriesComp.tsx";
+import {MarkerData} from "../../assets/types/map/SetMarkerProps.ts";
 // import CitiesComp from "./potentialComps/CitiesComp.tsx";
 // import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
 /**
@@ -19,8 +20,7 @@ import CountriesComp from "./potentialComps/CountriesComp.tsx";
  * @constructor
  */
 export default function MapComponent() {
-
-    const [markers, setMarkers] = useState<{ geocode: [number, number]; popUp: ReactNode; icon: Icon }[]>([]);
+    const [markers, setMarkers] = useState<MarkerData[]>([]);
     // const [polygonCoords, setPolygonCoords] = useState<L.LatLng[][] | null>(null);
 
     /**
@@ -40,7 +40,7 @@ export default function MapComponent() {
     const { BaseLayer } = LayersControl;
     return (
         <>
-            <MapTools setMarkers={setMarkers} />
+            <MapTools setMarkers={setMarkers}/>
             <MapContainer
                 center ={[48.8566, 2.3522]}
                 zoom={3}

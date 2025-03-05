@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom'
 import {NewsCard} from "./NewsCard.tsx";
 import {ShowType} from "../../assets/types/nav/ShowType.ts";
 import {AboutUs} from "./AboutUs.tsx";
+import {UseFilter} from "../../hooks/FilterContext.tsx";
 
-export default function Navbar({show}: ShowType) {
+export default function Navbar({show} : ShowType) {
     const [showFilter, setShowFilter] = useState(false);
     const [showRegion, setShowRegion] = useState(false);
     const [showCategory, setShowCategory] = useState(false);
     const [showNews, setShowNews] = useState(false);
     const [showAbout, setShowAbout] = useState(false);
+    const { filters, toggleFilter } = UseFilter();
 
     return (
         <>
@@ -56,10 +58,12 @@ export default function Navbar({show}: ShowType) {
                             <a className='active' onClick={() => setShowRegion(!showRegion)}>Region</a>
                         </li>
                         <ul className={showRegion ? 'filterOptions active' : 'filterOptions'}>
-                            {["Africa", "Asia", "Europe", "Oceania", "North-America", "South-America"].map((region) => (
-                                <li key={region}>
-                                    <input type="checkbox" id={region.toLowerCase()} value={region} />
-                                    <label htmlFor={region.toLowerCase()}>{region}</label>
+                            {["Africa", "Asia", "Europe", "Oceania", "North-America", "South-America"].map((reg) => (
+                                <li key={reg}>
+                                    <input type="checkbox" id={reg.toLowerCase()}
+                                           value={reg} checked={filters.regions.includes(reg)}
+                                           onChange={() => toggleFilter("regions", reg)} />
+                                    <label htmlFor={reg.toLowerCase()}>{reg}</label>
                                 </li>
                             ))}
                         </ul>
@@ -69,10 +73,11 @@ export default function Navbar({show}: ShowType) {
                             <a className='active' onClick={() => setShowCategory(!showCategory)}>Category</a>
                         </li>
                         <ul className={showCategory ? 'filterOptions active' : 'filterOptions'}>
-                            {["Business", "Crime", "Culture", "Politics", "Science", "Sports"].map((category) => (
-                                <li key={category}>
-                                    <input type="checkbox" id={category.toLowerCase()} value={category} />
-                                    <label htmlFor={category.toLowerCase()}>{category}</label>
+                            {["Business", "Crime", "Culture", "Politics", "Science", "Sports"].map((cat) => (
+                                <li key={cat}>
+                                    <input type="checkbox" id={cat.toLowerCase()} value={cat}
+                                    checked={filters.category.includes(cat)} onChange={() => toggleFilter("category", cat)} />
+                                    <label htmlFor={cat.toLowerCase()}>{cat}</label>
                                 </li>
                             ))}
                         </ul>

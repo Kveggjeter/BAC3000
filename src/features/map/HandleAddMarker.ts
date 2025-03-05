@@ -10,7 +10,7 @@ export function HandleAddMarker(
     lat: number,
     lon: number,
     html: ReactNode,
-    { setMarkers }: SetMarkerProps,
+    setMarkers: SetMarkerProps,
     icon: Icon
 ) {
     setMarkers((prevMarkers) => [
