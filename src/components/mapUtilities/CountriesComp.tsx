@@ -4,12 +4,13 @@ import {useMap} from 'react-leaflet';
 import * as turf from '@turf/turf';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-import {data} from '../../../assets/data/countries.js';
-import "../../../assets/styles/countryStat.css";
-import {ArticleData} from "../../../assets/types/news/ArticleData.ts";
-import {GetArticles} from "../../../services/getArticles.tsx";
-import {GetCountryNum} from "../../../services/getCountryNum.tsx";
-import { dragElement } from '../../../features/map/dragFact.ts';
+import {data} from '../../assets/data/countries.js';
+import "../../assets/styles/countryStat.css";
+import {ArticleData} from "../../assets/types/news/ArticleData.ts";
+import {GetArticles} from "../../services/getArticles.tsx";
+import {GetCountryNum} from "../../services/getCountryNum.tsx";
+import {dragElement} from "../../features/map/dragFact.ts";
+
 
 export default function CountriesComp() {
     const map = useMap();
@@ -49,6 +50,7 @@ export default function CountriesComp() {
              * TODO: Remove the styling from here? Just having it here temporarily for future reference, as this part WILL be rewritten
              */
             for (const feature of data.features) {
+                if(!feature.geometry) continue;
                 if (turf.booleanPointInPolygon(point, feature)) {
                     const layer = L.geoJson(feature, {
                         style: {

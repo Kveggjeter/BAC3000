@@ -6,7 +6,7 @@ import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaf
 import {divIcon, point} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
-import CountriesComp from "./potentialComps/CountriesComp.tsx";
+import CountriesComp from "./CountriesComp.tsx";
 import {MarkerData} from "../../assets/types/map/SetMarkerProps.ts";
 // import CitiesComp from "./potentialComps/CitiesComp.tsx";
 // import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
