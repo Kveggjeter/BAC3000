@@ -34,6 +34,7 @@ export default function CountriesComp() {
      */
     useEffect(() => {
         async function onMapClick(e: L.LeafletMouseEvent) {
+
             if (highlightLayerRef.current) {
                 map.removeLayer(highlightLayerRef.current);
                 map.panTo(e.latlng);
