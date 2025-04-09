@@ -1,53 +1,56 @@
 import { useState } from 'react'
-import logo from '../../assets/images/logoD.png'
 import region from '../../assets/images/region.png'
 import categories from '../../assets/images/categories.png'
+import signin from '../../assets/images/signin.png'
+import newsIcon from '../../assets/images/news.png'
+import aboutIcon from '../../assets/images/aboutUs.png'
+import filterIcon from '../../assets/images/filter.png'
 import { Link } from 'react-router-dom'
 import {NewsCard} from "./NewsCard.tsx";
-import {ShowType} from "../../assets/types/nav/ShowType.ts";
 import {AboutUs} from "./AboutUs.tsx";
 import {UseFilter} from "../../hooks/FilterContext.tsx";
+import "../../assets/styles/navigation.css"
 
-export default function Navbar({show} : ShowType) {
+export default function Navbar() {
     const [showFilter, setShowFilter] = useState(false);
     const [showRegion, setShowRegion] = useState(false);
     const [showCategory, setShowCategory] = useState(false);
     const [showNews, setShowNews] = useState(false);
     const [showAbout, setShowAbout] = useState(false);
+    const [toggleNews, setToggleNews] = useState(false);
     const { filters, toggleFilter } = UseFilter();
 
     return (
         <>
-            <div className={`${show ? 'sidenav active' : 'sidenav'} ${showNews ? 'expanded' : ''} ${showAbout ? 'expanded' : ''} `}>
+            <div className="sidenav">
                 <div className="logoContainer">
-                    <img src={logo} alt="logo" className="logos" />
+                    <span className="headerText">Simply Tidings</span>
                 </div>
-                <ul className="genList">
-                    <li>
-                        <Link to='/login' className='active'>
-                            <span className="liText">Sign in</span>
-                        </Link>
+                <ul className={`genList ${toggleNews ? 'active' : ''}`}>
+                    <li className="listItem">
+                                <img src={signin} alt="signin" className="listIcons" />
+                                <a className="liText">Sign in</a>
                     </li>
-                    <li className="newsDiv">
-                        <a className='active' onClick={() => {setShowNews(!showNews)}}>
-                            <span className="liText">News</span>
-                        </a>
+                    <li
+                        className="listItem"
+                        onClick={() => setToggleNews(!toggleNews)}
+                    >
+                        <img src={newsIcon} alt="newsIcon" className="listIcons" />
+                            <a className="liText">News</a>
                     </li>
-                    <div className={showNews ? 'newsPage active' : 'newsPage'}>
-                        <NewsCard/>
+                    <div className={toggleNews ? 'newsPage active' : 'newsPage'}>
+                        <NewsCard toggleNews={toggleNews}/>
                     </div>
-                    <li className="aboutDiv">
-                        <a className='active' onClick={() => {setShowAbout(!showAbout)}}>
-                            <span className="liText">About us</span>
-                        </a>
+                    <li className="listItem">
+                        <img src={aboutIcon} alt="aboutIcon" className="listIcons" />
+                            <a className="liText">About us</a>
                     </li>
                     <div className={showAbout ? 'aboutPage active' : 'aboutPage'}>
                         <AboutUs/>
                     </div>
-                    <li>
-                        <a className='active' onClick={() => setShowFilter(!showFilter)}>
-                            <span className="liText">Filter</span>
-                        </a>
+                    <li className="listItem">
+                            <img src={filterIcon} alt="filterIcon" className="listIcons" />
+                            <a className="liText">Filter</a>
                     </li>
                 </ul>
                     <div className={showFilter ? 'filter active' : 'filter'}>

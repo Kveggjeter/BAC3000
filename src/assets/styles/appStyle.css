@@ -1,25 +1,29 @@
+/* Title, it was logo and might be logo in the future */
 .logoContainer {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     overflow: hidden;
     max-height: 120px;
-    padding: 50px 35px 0 15px;
+    padding: 15px;
     background-image: linear-gradient(35deg, #75ABBC, #23B5D3);
 }
 
-.logos {
-    width: 230px;
+.headerText {
+    display: flex;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: bold;
+    font-size: 20px;
 }
 
 .sidenav {
-    width: 160px;
+    max-width: 60px;
     background-color: #f0f2f3;
     height: 100%;
     max-height: 100%;
     padding: 0;
     position: absolute;
-    left: -100%;
     transition: all 1s;
     z-index: 110;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
@@ -27,9 +31,20 @@
     border: 1px solid #ccc;
 
 }
+/* listItems */
 
-.sidenav.active {
-    left: 0;
+.liText {
+    left: 100%;
+}
+
+.listItem {
+    display: flex;
+    align-items: center;
+}
+
+.listIcons {
+    display: flex;
+    width: 20px;
 }
 
 .filter {

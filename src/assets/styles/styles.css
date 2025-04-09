@@ -1,3 +1,7 @@
+body {
+    overflow: hidden;
+}
+
 .App {
     font-family: Verdana, Geneva, Tahoma, Verdana, sans-serif;
     text-align: center;

@@ -1,5 +1,4 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import './assets/styles/appStyle.css'
 import { Home } from './pages/home.tsx';
 import { Login } from './pages/login.tsx';
 
