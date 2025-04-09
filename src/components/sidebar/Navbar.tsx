@@ -5,6 +5,7 @@ import signin from '../../assets/images/signin.png'
 import newsIcon from '../../assets/images/news.png'
 import aboutIcon from '../../assets/images/aboutUs.png'
 import filterIcon from '../../assets/images/filter.png'
+import st from '../../assets/images/st.png'
 import { Link } from 'react-router-dom'
 import {NewsCard} from "./NewsCard.tsx";
 import {AboutUs} from "./AboutUs.tsx";
@@ -22,8 +23,9 @@ export default function Navbar() {
 
     return (
         <>
-            <div className="sidenav">
+            <div className={`sidenav ${toggleNews ? 'active' : ''}`}>
                 <div className="logoContainer">
+                    <img src={st} alt="st" className="logo" />
                     <span className="headerText">Simply Tidings</span>
                 </div>
                 <ul className={`genList ${toggleNews ? 'active' : ''}`}>
@@ -31,6 +33,7 @@ export default function Navbar() {
                                 <img src={signin} alt="signin" className="listIcons" />
                                 <a className="liText">Sign in</a>
                     </li>
+                    <div>
                     <li
                         className="listItem"
                         onClick={() => setToggleNews(!toggleNews)}
@@ -38,8 +41,9 @@ export default function Navbar() {
                         <img src={newsIcon} alt="newsIcon" className="listIcons" />
                             <a className="liText">News</a>
                     </li>
-                    <div className={toggleNews ? 'newsPage active' : 'newsPage'}>
-                        <NewsCard toggleNews={toggleNews}/>
+                        <div className={toggleNews ? 'newsPage active' : 'newsPage'}>
+                            <NewsCard toggleNews={toggleNews}/>
+                        </div>
                     </div>
                     <li className="listItem">
                         <img src={aboutIcon} alt="aboutIcon" className="listIcons" />
