@@ -42,7 +42,7 @@ export function NewsCard({toggleNews}: NewsProp) {
 
 
     return (
-        <>
+        <> <div id="nwp">
             <div className="nwp">
                 <label className="searchLabel">Type a word of interest! {'\u{1F50E}'}</label>
                 <input type="text" className="search" placeholder="Search.." value={value} onChange={handleChange} autoFocus></input>
@@ -61,6 +61,7 @@ export function NewsCard({toggleNews}: NewsProp) {
                     </div>
                 );
             })}
+        </div>
         </>
     );
 }
