@@ -2,15 +2,18 @@ import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GetArticles} from "../../services/getArticles.tsx";
 import {useEffect, useState} from "react";
 import * as React from "react";
+import {NewsProp} from "../../assets/types/nav/NewsProp.ts";
 
 /**
  * Generates the articles shown in the navbar.
  * TODO: Do something about the css, this should absolutely be modular. Global problems currently
  * TODO: Find another way to fetch data, this is really wierd.
  */
-export function NewsCard() {
+export function NewsCard({toggleNews}: NewsProp) {
     const [data, setData] = useState<ArticleData[]>([]);
     const [value, setValue] = useState("");
+
+
 
     function handleChange(e: React.ChangeEvent<HTMLInputElement>): void {
         setValue(e.target.value);
@@ -21,6 +24,8 @@ export function NewsCard() {
             .then((result) => setData(result))
             .catch((error) => console.error("Error fetching articles:", error));
     }, []);
+
+    if (!toggleNews) return null;
 
     if (!data || data.length === 0) {
         return <div>Nothing to show as of now, please wait or reload...</div>;
@@ -37,7 +42,7 @@ export function NewsCard() {
 
 
     return (
-        <>
+        <> <div id="nwp">
             <div className="nwp">
                 <label className="searchLabel">Type a word of interest! {'\u{1F50E}'}</label>
                 <input type="text" className="search" placeholder="Search.." value={value} onChange={handleChange} autoFocus></input>
@@ -56,6 +61,7 @@ export function NewsCard() {
                     </div>
                 );
             })}
+        </div>
         </>
     );
 }
