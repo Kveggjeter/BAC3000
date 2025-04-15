@@ -8,6 +8,7 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
 import CountriesComp from "./CountriesComp.tsx";
 import {MarkerData} from "../../assets/types/map/SetMarkerProps.ts";
+import {Legend} from "./Legend.tsx";
 // import CitiesComp from "./potentialComps/CitiesComp.tsx";
 // import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
 /**
@@ -50,6 +51,7 @@ export default function MapComponent() {
                 // maxBounds={L.latLngBounds(new L.LatLng(200, -210), new L.LatLng(-200, 210))}
                 // maxBoundsViscosity={0.5}
                 >
+                <Legend/>
                 <CountriesComp/>
                 <LayersControl>
                     <BaseLayer checked name ="OSM">

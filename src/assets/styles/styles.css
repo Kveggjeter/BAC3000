@@ -65,6 +65,7 @@ body {
     border-radius: 15px;
     color: #333;
     padding: 10px;
+    width: 450px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -79,14 +80,16 @@ body {
     display: flex;
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
-    height: 250px;
-    width: 300px;
-    max-width: 300px;
-    max-height: 250px;
-    overflow-y: scroll;
+    max-width: 400px;
+    max-height: 600px;
+
+    min-width: 400px;
+    min-height: 300px;
+    overflow-y: auto;
     background-color: white;
     border: 0.5px solid #ccc;
     border-radius: 5px;
+    padding: 10px;
 }
 
 /*  Scrollbar source: https://css-tricks.com/classy-and-cool-custom-css-scrollbars-a-showcase/             */
@@ -120,8 +123,91 @@ body {
 }
 
 .articleImg {
-    width: 280px;
+    width: 360px;
 }
+
+/* Legend */
+
+.legendText {
+    font-size: 0;
+    transition: 0.2s ease-in-out;
+}
+
+.legend {
+    position: absolute;
+    top: 100px;
+    right: 0;
+    z-index: 1100;
+    font-family: "Courier New", Courier, monospace;
+    font-weight: lighter;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 5px 5px 15px 5px;
+}
+
+.legend:hover .legendText {
+    font-size: 12px;
+    margin-right: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.legend:hover li {
+    border-bottom: 1px black dashed;
+}
+
+.legend ul {
+    list-style-type: none;
+}
+
+.legend li {
+    margin-top: 10px;
+}
+
+.legendBox {
+    display: flex;
+    flex-direction: row;
+}
+
+.colorBox {
+    height: 15px;
+    width: 15px;
+    margin-left: auto;
+}
+
+
+
+/* colors */
+
+#crimeBox {
+    background-color: #001D5D;
+}
+
+#cultureBox {
+    background-color: #06410C;
+}
+
+#businessBox {
+    background-color: #61CAED;
+}
+
+#scienceBox {
+    background-color: #8CCA4B;
+}
+
+#politicsBox {
+    background-color: #E56E30;
+}
+
+#sportsBox {
+    background-color: #EDED00;
+}
+
+#unknownBox {
+    background-color: #050505;
+}
+
 
 
 
