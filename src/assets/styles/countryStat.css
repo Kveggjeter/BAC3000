@@ -1,15 +1,41 @@
 .countries {
-    z-index: 10000;
     position: absolute;
-    top: 500px;
-    left: 500px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1500;
     width: 200px;
     height: 200px;
+    cursor: default;
     border-radius: 15px;
-    cursor: move;
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(10px);
+}
+
+.countryPopupCloseButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-family: Tahoma, Verdana, sans-serif;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.countryPopupCloseButton:hover {
+    cursor: pointer;
+    color: white;
+    transition: ease-in-out 0.3s;
+}
+
+.countries a {
+    transition: ease-in-out 0.3s;
+    color: #e1e1e1;
 }
 
 .country {

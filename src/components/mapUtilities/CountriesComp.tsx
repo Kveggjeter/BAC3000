@@ -9,7 +9,6 @@ import "../../assets/styles/countryStat.css";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GetArticles} from "../../services/getArticles.tsx";
 import {GetCountryNum} from "../../services/getCountryNum.tsx";
-import {dragElement} from "../../features/map/dragFact.ts";
 
 
 export default function CountriesComp() {
@@ -29,16 +28,28 @@ export default function CountriesComp() {
             .catch((error) => console.error("Error fetching articles:", error));
     }, []);
 
+    const handleHighlightLayer = (): boolean => {
+        if (highlightLayerRef.current) {
+            map.removeLayer(highlightLayerRef.current);
+            highlightLayerRef.current = null;
+            return true;
+        }
+        return false;
+    }
+
+    const handleClose = () => {
+        handleHighlightLayer()
+        setReturnFact(null);
+    }
+
     /**
      * Removes the previous highlight, adds a new highlight.
      */
     useEffect(() => {
         async function onMapClick(e: L.LeafletMouseEvent) {
 
-            if (highlightLayerRef.current) {
-                map.removeLayer(highlightLayerRef.current);
+            if(handleHighlightLayer()) {
                 map.panTo(e.latlng);
-                highlightLayerRef.current = null;
             }
 
             setReturnFact(null);
@@ -86,14 +97,16 @@ export default function CountriesComp() {
     }, [map, articles]);
 
     useEffect(() => {
-        if (returnFact && countriesRef.current) {
-            dragElement(countriesRef.current);
+        if (countriesRef.current) {
+            L.DomEvent.disableClickPropagation(countriesRef.current);
         }
-    }, [returnFact]);
+    }, [returnFact])
+
     return (
         <>
             {returnFact && (
                 <div className="countries" id="countries" ref={countriesRef}>
+                    <a className="countryPopupCloseButton" role="button" onClick={handleClose}>x</a>
                     <span className="country" id="country">{country.current}</span>
                     <div className="aNumCon">
                         <span className="newsNow">Articles: </span>
