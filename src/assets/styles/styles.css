@@ -91,7 +91,7 @@ body {
     padding: 10px;
 }
 
-/*  Scrollbar source: https://css-tricks.com/classy-and-cool-custom-css-scrollbars-a-showcase/             */
+/*  Scrollbar source: https://css-tricks.com/classy-and-cool-custom-css-scrollbars-a-showcase/ */
 .popup::-webkit-scrollbar {
     width: 12px;
 }
