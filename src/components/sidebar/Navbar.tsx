@@ -1,10 +1,8 @@
 import {RefObject, useEffect, useRef, useState} from 'react'
-import signin from '../../assets/images/signin.png'
 import newsIcon from '../../assets/images/news.png'
 import aboutIcon from '../../assets/images/aboutUs.png'
 import filterIcon from '../../assets/images/filter.png'
 import st from '../../assets/images/st.png'
-import { Link } from 'react-router-dom'
 import {NewsCard} from "./NewsCard.tsx";
 import {AboutUs} from "./AboutUs.tsx";
 import "../../assets/styles/navigation.css"
@@ -45,12 +43,6 @@ export default function Navbar() {
                     <span className="headerText">Simply Tidings</span>
                 </div>
                 <ul className="genList">
-                    <Link to='/login'>
-                    <li className="listItem">
-                                <img src={signin} alt="signin" className="listIcons" />
-                                <a className="liText">Sign in</a>
-                    </li>
-                    </Link>
                     <div>
                         <li
                             className="listItem"

@@ -38,10 +38,9 @@ body {
     background-image: url('../images/news.png');
     background-size: cover;
     background-position: center;
-    color: red;
+    color: #071013;
     height: 3rem;
     width: 3rem;
-    -webkit-text-stroke: 1px black;
     transform: translate(-25%, -25%);
     display: flex;
     justify-content: center;
@@ -55,9 +54,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 3rem;
-    width: 2.5rem;
+    width: 2.6rem;
     border-top-left-radius: 25%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .leaflet-popup-content-wrapper {
@@ -181,31 +180,31 @@ body {
 /* colors */
 
 #crimeBox {
-    background-color: #001D5D;
-}
-
-#cultureBox {
-    background-color: #06410C;
+    background-color: #071013;
 }
 
 #businessBox {
-    background-color: #61CAED;
+    background-color: #1B2CC1;
 }
 
 #scienceBox {
-    background-color: #8CCA4B;
+    background-color: #1C7C54;
+}
+
+#cultureBox {
+    background-color: #B1CF5F;
 }
 
 #politicsBox {
-    background-color: #E56E30;
+    background-color: #23B5D3;
 }
 
 #sportsBox {
-    background-color: #EDED00;
+    background-color: #75ABBC;
 }
 
-#unknownBox {
-    background-color: #050505;
+#mixedBox {
+    background-color: #DFE0E2;
 }
 
 
