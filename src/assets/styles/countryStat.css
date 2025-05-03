@@ -4,11 +4,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1500;
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    min-height: 200px;
+    padding-bottom: 10px;
+    height: auto;
     cursor: default;
     border-radius: 15px;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(10px);
 }
@@ -56,5 +58,40 @@
     padding-top: 10px;
     margin-left: 10px;
 }
+
+.newsNow {
+    font-size: 18px;
+}
+
+#newsCategory {
+    border-bottom: 1px black solid;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+#commonCategory {
+    text-align: center;
+    border-top: 1px black dashed;
+    border-bottom: 1px black solid;
+    font-size: 20px;
+    margin: 0;
+}
+
+#articleCount {
+    border-bottom: 1px grey dashed;
+    margin: 0;
+}
+
+#categoryNews {
+    padding-left: 10px;
+}
+
+#mostNewsCoverage {
+    border-bottom: 1px grey dotted;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 
 

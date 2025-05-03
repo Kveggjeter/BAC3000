@@ -71,7 +71,7 @@ export default function MapComponent() {
                     chunkedLoading
                     iconCreateFunction={createCustomClusterIcon}
                     animateAddingMarkers: true
-                    maxClusterRadius={20}
+                    maxClusterRadius={3}
                 >
                     {markers.map((marker, index) => (
                         <Marker key={index} position={marker.geocode} icon={marker.icon}>

@@ -9,24 +9,18 @@ import "../../assets/styles/countryStat.css";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
 import {GetArticles} from "../../services/getArticles.tsx";
 import {GetCountryNum} from "../../services/getCountryNum.tsx";
+import {ArticleFacts} from "../../assets/types/news/ArticleFacts.ts";
 
 
 export default function CountriesComp() {
+
     const map = useMap();
     const [articles, setArticles] = useState<ArticleData[]>([]);
+    const [articleFacts, setArticleFacts] = useState<ArticleFacts | null>(null);
     const countriesRef = useRef<HTMLDivElement | null>(null);
-
-    // To remember what polygon is active
     const country: MutableRefObject<string> = useRef("");
-    const count: MutableRefObject<number> = useRef(0);
     const highlightLayerRef = useRef<L.GeoJSON | null>(null);
     const [returnFact, setReturnFact] = useState<GeoJSON.Feature | null>(null);
-
-    useEffect(() => {
-        GetArticles()
-            .then((result) => setArticles(result))
-            .catch((error) => console.error("Error fetching articles:", error));
-    }, []);
 
     const handleHighlightLayer = (): boolean => {
         if (highlightLayerRef.current) {
@@ -40,10 +34,28 @@ export default function CountriesComp() {
     const handleClose = () => {
         handleHighlightLayer()
         setReturnFact(null);
+        setArticleFacts(null);
     }
 
+    useEffect(() => {
+        GetArticles()
+            .then((result) => setArticles(result))
+            .catch((error) => console.error("Error fetching articles:", error));
+    }, []);
+
+    useEffect(() => {
+        if (countriesRef.current) {
+            L.DomEvent.disableClickPropagation(countriesRef.current);
+        }
+    }, [returnFact])
+
+
     /**
-     * Removes the previous highlight, adds a new highlight.
+     * Removes the previous highlight, adds a new highlight. Iterate countries in the GeoJson.
+     * Connecting each feature from turf with relevant data points. If true,
+     * new layer is made that showcases the polygon that matches the points.
+     *
+     * We get
      */
     useEffect(() => {
         async function onMapClick(e: L.LeafletMouseEvent) {
@@ -51,16 +63,12 @@ export default function CountriesComp() {
             if(handleHighlightLayer()) {
                 map.panTo(e.latlng);
             }
-
+            setArticleFacts(null);
             setReturnFact(null);
             const {lat, lng} = e.latlng;
             const point = turf.point([lng, lat]);
 
-            /**
-             * Iterate countries in the GeoJson. Connecting each feature from turf with relevant data points.
-             * If true, new layer is made that showcases the polygon that matches the points.
-             * TODO: Remove the styling from here? Just having it here temporarily for future reference, as this part WILL be rewritten
-             */
+
             for (const feature of data.features) {
                 if(!feature.geometry) continue;
                 if (turf.booleanPointInPolygon(point, feature)) {
@@ -74,14 +82,10 @@ export default function CountriesComp() {
                     });
 
                     country.current = feature.properties.ADMIN;
-                    const tall: number = await GetCountryNum(country.current);
-                    let usTall: number = 0;
-                    let us: string = country.current;
-                    if (country.current == "United States") {
-                        us = "USA";
-                        usTall = await GetCountryNum(us);
-                    }
-                    count.current = tall + usTall;
+                    await GetCountryNum(country.current)
+                        .then((result) => setArticleFacts(result))
+                        .catch((error) => console.error(error));
+
                     layer.addTo(map);
                     highlightLayerRef.current = layer;
                     setReturnFact(feature);
@@ -96,24 +100,97 @@ export default function CountriesComp() {
         };
     }, [map, articles]);
 
-    useEffect(() => {
-        if (countriesRef.current) {
-            L.DomEvent.disableClickPropagation(countriesRef.current);
-        }
-    }, [returnFact])
-
     return (
         <>
             {returnFact && (
                 <div className="countries" id="countries" ref={countriesRef}>
                     <a className="countryPopupCloseButton" role="button" onClick={handleClose}>x</a>
                     <span className="country" id="country">{country.current}</span>
-                    <div className="aNumCon">
-                        <span className="newsNow">Articles: </span>
-                        <span className="newsNum">{count.current}</span>
-                    </div>
+                    {articleFacts && (
+                        <>
+                            {articleFacts.articleCount > 0 ? (
+                                <>
+                                <div className="aNumCon" id="articleCount">
+                                    <span className="newsNow" id="categoryNews">Articles: </span>
+                                    <span className="newsNum" >{articleFacts.articleCount}</span>
+                                </div>
+                            <div className="aNumCon" id="newsCategory">
+                                <span className="newsNum" id="categoryNews">Categories</span>
+                            </div>
+                            {articleFacts.businessCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Business: </span>
+                                    <span className="newsNum">{articleFacts.businessCategoryCount}</span>
+                                </div>
+                                )}
+                            {articleFacts.crimeCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Crime: </span>
+                                    <span className="newsNum">{articleFacts.crimeCategoryCount}</span>
+                                </div>
+                                )}
+                            {articleFacts.cultureCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Culture: </span>
+                                    <span className="newsNum">{articleFacts.cultureCategoryCount}</span>
+                                </div>
+                                )}
+                            {articleFacts.politicsCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Politics: </span>
+                                    <span className="newsNum">{articleFacts.politicsCategoryCount}</span>
+                                </div>
+                                )}
+                            {articleFacts.scienceCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Science: </span>
+                                    <span className="newsNum">{articleFacts.scienceCategoryCount}</span>
+                                </div>
+                                )}
+                            {articleFacts.sportsCategoryCount > 0 && (
+                                <div className="aNumCon">
+                                    <span className="newsNow">Sports: </span>
+                                    <span className="newsNum">{articleFacts.sportsCategoryCount}</span>
+                                </div>
+                                )}
+                            <div className="aNumCon" id="commonCategory">
+                                <span className="newsNum" id="categoryNews">Common</span>
+                            </div>
+                            {articleFacts.cityWithMostCoverage != null &&
+                                (
+                                <div className="aNumCon">
+                                    <div className="tellers">
+                                        <span className="newsNow" id="tellers">Most reported city </span>
+                                    </div>
+                                    <span className="newsNum" id="mostNewsCoverage">{articleFacts.cityWithMostCoverage[0].toUpperCase()
+                                        + articleFacts.cityWithMostCoverage.slice(1)}
+                                    </span>
+                                </div>
+                            )}
+                            {articleFacts.mostFrequentNewsSource != null && (
+                                <div className="aNumCon">
+                                    <div className="tellers">
+                                        <span className="newsNow" id="tellers">Most popular source </span>
+                                    </div>
+                                    <span className="newsNum" id="mostNewsCoverage">{articleFacts.mostFrequentNewsSource[0].toUpperCase()
+                                    + articleFacts.mostFrequentNewsSource.slice(1)}
+                                    </span>
+                                </div>
+                            )}
+                                </>
+                        ) : (
+                            <>
+                                <div className="aNumCon" id="newsCategory">
+                                    <span className="newsNum" id="categoryNews">No articles yet for {country.current}</span>
+                                </div>
+                            </>
+                            )
+                            }
+                        </>
+                    )}
                 </div>
             )}
+
         </>
     );
 }
