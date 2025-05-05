@@ -62,8 +62,8 @@ export default function MapComponent() {
                     </BaseLayer>
                     <BaseLayer name ="Dark">
                         <TileLayer
-                            attribution='© OpenStreetMap contributors &copy; <a href="https://carto.com/">CARTO</a>'
-                            url="https://tiles.stadiamaps.com/tiles/stamen_toner/{z}/{x}/{y}{r}.png"
+                            attribution='© OpenStreetMap contributors &copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a>'
+                            url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=Iec7Dc3SZlSiI8kUpdY7m4ARDo4NQqGHpKr0upWdlHb3TY7638UgTm4K9v43kJ4c"
                         />
                     </BaseLayer>
                 </LayersControl>

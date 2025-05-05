@@ -50,6 +50,10 @@
         max-width: 100%;
         padding-left: 10px;
     }
+
+    .sidenavContent {
+        max-height: 75vh;
+    }
     
 }
 

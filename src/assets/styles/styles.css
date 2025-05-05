@@ -128,7 +128,7 @@ body {
 
 @media screen and (max-width: 600px) {
     .articleImg {
-        width: 250px;
+        width: 200px;
         transition: ease-in-out 0.5s;
     }
 
@@ -136,10 +136,10 @@ body {
         display: flex;
         flex-direction: column;
         font-family: Helvetica, Arial, sans-serif;
-        max-width: 300px;
+        max-width: 230px;
         max-height: 400px;
-        min-width: 300px;
-        min-height: 300px;
+        min-width: 230px;
+        min-height: 200px;
         overflow-y: auto;
         background-color: white;
         border: 0.5px solid #ccc;
@@ -152,8 +152,8 @@ body {
         background: rgba(255, 255, 255, 0.8);
         border-radius: 15px;
         color: #333;
-        padding: 10px;
-        width: 350px;
+        padding: 3px;
+        width: 250px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     }
 }

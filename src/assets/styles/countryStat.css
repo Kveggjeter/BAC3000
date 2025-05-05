@@ -15,6 +15,12 @@
     -webkit-backdrop-filter: blur(10px);
 }
 
+@media screen and (max-width: 600px) {
+    .countries {
+        width: 230px;   
+    }
+}
+
 .countryPopupCloseButton {
     position: absolute;
     top: 0;
