@@ -27,6 +27,32 @@
     text-decoration: none;
 }
 
+@media screen and (max-width: 600px) {
+    
+    .sidenav.active {
+        width: 100vw;
+    }
+
+    .newsPage.active,
+    .aboutPage.active {
+        padding-top: 20px;
+        max-height: 500px;
+        min-width: 90vw;
+        max-width: 100%;
+        opacity: 1;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+    }
+
+    .filter.active {
+        opacity: 1;
+        max-height: 500px;
+        min-width: 90vw;
+        max-width: 100%;
+        padding-left: 10px;
+    }
+    
+}
+
 /*  Header */
 
 .headerText {
