@@ -61,7 +61,7 @@ export default function Navbar() {
                             onClick={() => setToggleAbout(!toggleAbout)}
                         >
                             <img src={aboutIcon} alt="aboutIcon" className="listIcons" />
-                            <a className="liText">About us</a>
+                            <a className="liText">About</a>
                         </li>
                         <div ref={aboutRef} className={toggleAbout ? 'aboutPage active' : 'aboutPage'}>
                             <AboutUs/>
