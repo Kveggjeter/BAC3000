@@ -84,6 +84,7 @@ body {
     min-width: 400px;
     min-height: 300px;
     overflow-y: auto;
+    tab-index: 0;
     background-color: white;
     border: 0.5px solid #ccc;
     border-radius: 5px;
@@ -141,6 +142,7 @@ body {
         min-width: 230px;
         min-height: 200px;
         overflow-y: auto;
+        tab-index: 0;
         background-color: white;
         border: 0.5px solid #ccc;
         border-radius: 5px;

@@ -9,8 +9,7 @@ import {Cluster} from "../../assets/types/map/Cluster.ts";
 import CountriesComp from "./CountriesComp.tsx";
 import {MarkerData} from "../../assets/types/map/SetMarkerProps.ts";
 import {Legend} from "./Legend.tsx";
-// import CitiesComp from "./potentialComps/CitiesComp.tsx";
-// import DayNightTerminator from "./potentialComps/DayNightTerminator.tsx";
+
 /**
  * Map component, decides how everything will look like and what attributes they should have.
  * TODO: Toggle for dark and lightmode with baselayer
@@ -40,7 +39,7 @@ export default function MapComponent() {
     };
     const { BaseLayer } = LayersControl;
     return (
-        <>
+        <main>
             <MapTools setMarkers={setMarkers}/>
             <MapContainer
                 center ={[48.8566, 2.3522]}
@@ -80,7 +79,7 @@ export default function MapComponent() {
                     ))}
                 </MarkerClusterGroup>
             </MapContainer>
-        </>
+        </main>
     )
 };
 

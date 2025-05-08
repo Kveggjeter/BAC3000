@@ -32,15 +32,15 @@ export default function Navbar() {
 
     return (
         <>
-            <div className={`sidenav 
+            <nav className={`sidenav 
             ${toggleNews ? 'active' : ''} :
             ${toggleAbout ? 'active' : ''} :
             ${showFilter ? 'active' : ''}`}
             >
                 <div className="sidenavContent">
                 <div className="logoContainer">
-                    <img src={st} alt="st" className="logo" />
-                    <span className="headerText">Simply Tidings</span>
+                    <img src={st} alt="" className="logo" />
+                    <h1 className="headerText">Simply Tidings</h1>
                 </div>
                 <ul className="genList">
                     <div>
@@ -48,7 +48,7 @@ export default function Navbar() {
                             className="listItem"
                             onClick={() => setToggleNews(!toggleNews)}
                         >
-                            <img src={newsIcon} alt="newsIcon" className="listIcons" />
+                            <img src={newsIcon} alt="" className="listIcons" />
                             <a className="liText">News</a>
                         </li>
                         <div ref={newsRef} className={toggleNews ? 'newsPage active' : 'newsPage'}>
@@ -60,7 +60,7 @@ export default function Navbar() {
                             className="listItem"
                             onClick={() => setToggleAbout(!toggleAbout)}
                         >
-                            <img src={aboutIcon} alt="aboutIcon" className="listIcons" />
+                            <img src={aboutIcon} alt="" className="listIcons" />
                             <a className="liText">About</a>
                         </li>
                         <div ref={aboutRef} className={toggleAbout ? 'aboutPage active' : 'aboutPage'}>
@@ -71,7 +71,7 @@ export default function Navbar() {
                         <li className="listItem"
                         onClick={() => setShowFilter(!showFilter)}
                         >
-                            <img src={filterIcon} alt="filterIcon" className="listIcons" />
+                            <img src={filterIcon} alt="" className="listIcons" />
                             <a className="liText">Filter</a>
                         </li>
                         <div className={showFilter ? 'filter active' : 'filter'}>
@@ -80,7 +80,7 @@ export default function Navbar() {
                     </div>
                 </ul>
                 </div>
-            </div>
+            </nav>
         </>
     )
 }

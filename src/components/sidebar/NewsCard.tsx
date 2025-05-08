@@ -52,7 +52,7 @@ export function NewsCard({toggleNews}: NewsProp) {
                 const {id, title, summary, sourceName, imgUrl} = article;
                 return (
                     <div key={id} className="newsCard">
-                        <p className="newsTitle">{title}</p>
+                        <h3 className="newsTitle">{title}</h3>
                         <p className="article">{summary}</p>
                         <a className="link" href={id}>Source: {sourceName}</a>
                         <a href={id}>

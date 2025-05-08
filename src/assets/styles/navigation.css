@@ -20,6 +20,7 @@
 
 .sidenavContent {
     overflow-y: auto;
+    tab-index: 0;
     max-height: 95vh;
 }
 
@@ -63,6 +64,7 @@
     font-size: 0;
     text-align: center;
     padding-left: 10px;
+    font-weight: normal;
 }
 
 .sidenav:hover .headerText,
@@ -188,6 +190,7 @@ ul li .liText:active::before {
     max-width: 0;
     max-height: 0;
     opacity: 0;
+    tab-index: 0;
     overflow-y: auto;
 }
 
@@ -280,6 +283,7 @@ ul li .liText:active::before {
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
+    tab-index: 0;
     transition: all 0.3s ease-in-out;
 }
 

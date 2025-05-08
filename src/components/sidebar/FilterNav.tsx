@@ -10,7 +10,7 @@ export function FilterNav() {
         <>
             <ul className="filterList">
                 <li className="filterHeader">
-                    <img src={region} alt="Region" className="filterIcon"/>
+                    <img src={region} alt="" className="filterIcon"/>
                     <a className="filterText">Region</a>
                 </li>
                 <ul className="filterOptions">
@@ -24,7 +24,7 @@ export function FilterNav() {
                     ))}
                 </ul>
                 <li className="filterHeader">
-                    <img src={categories} alt="Category" className="filterIcon"/>
+                    <img src={categories} alt="" className="filterIcon"/>
                     <a className="filterText">Category</a>
                 </li>
                 <ul className="filterOptions">
