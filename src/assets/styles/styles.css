@@ -64,7 +64,7 @@ body {
     border-radius: 15px;
     color: #333;
     padding: 10px;
-    width: 450px;
+    width: 460px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
 }
 
@@ -149,11 +149,12 @@ body {
     }
 
     .leaflet-popup-content-wrapper {
+        display: flex;
         background: rgba(255, 255, 255, 0.8);
         border-radius: 15px;
         color: #333;
         padding: 3px;
-        width: 250px;
+        width: 270px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
     }
 }
