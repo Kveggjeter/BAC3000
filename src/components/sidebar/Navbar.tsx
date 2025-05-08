@@ -44,7 +44,7 @@ export default function Navbar() {
                 </div>
                 <ul className="genList">
                     <div>
-                        <li
+                        <li tabIndex={0}
                             className="listItem"
                             onClick={() => setToggleNews(!toggleNews)}
                         >
@@ -56,7 +56,7 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div>
-                        <li
+                        <li tabIndex={0}
                             className="listItem"
                             onClick={() => setToggleAbout(!toggleAbout)}
                         >
@@ -68,7 +68,7 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div>
-                        <li className="listItem"
+                        <li tabIndex={0} className="listItem"
                         onClick={() => setShowFilter(!showFilter)}
                         >
                             <img src={filterIcon} alt="" className="listIcons" />
