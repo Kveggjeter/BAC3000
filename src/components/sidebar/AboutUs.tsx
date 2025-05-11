@@ -1,3 +1,6 @@
+/**
+ * Component for the about-us info
+ */
 export function AboutUs() {
     return (
         <>

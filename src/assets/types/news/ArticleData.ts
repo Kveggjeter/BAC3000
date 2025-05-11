@@ -1,3 +1,6 @@
+/**
+ * Data interface for representing the data-types for each Article
+ */
 export interface ArticleData {
     title: string;
     summary: string;

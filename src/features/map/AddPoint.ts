@@ -1,12 +1,16 @@
 import {GeneratePopup} from "../../components/mapUtilities/GeneratePopup.tsx";
 import {HandleAddMarker} from "./HandleAddMarker.ts";
-import {customIcon} from "../../components/mapUtilities/customIcon.tsx";
+import {customIcon} from "../../components/mapUtilities/CustomIcon.tsx";
 import {AddPointProps} from "../../assets/types/map/AddPointProps.ts";
 
 /**
- * Adding points to the map using a button client-side. Will be changed to something auto-generated.
- * This function will however look mostly the same for either usecase
- * TODO: Find some other way to always display this, probably with a usestate or something.
+ * This is a helper function that converts a list with articles to map-pointers.
+ *
+ * We iterate trough each article and get each of their respective coordinates, category
+ * and content. Each marker is given a customized icon based on the category, via customIcon.
+ * The popup-content are made with "GeneratePopup".
+ *
+ * HandleAddMarker handles the data and adds a marked via setMarkers.
  */
 export function AddPoint({ setMarkers, articles }: AddPointProps) {
 

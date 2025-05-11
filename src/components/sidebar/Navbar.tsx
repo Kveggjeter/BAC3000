@@ -8,6 +8,14 @@ import {AboutUs} from "./AboutUs.tsx";
 import "../../assets/styles/navigation.css"
 import {FilterNav} from "./FilterNav.tsx";
 
+/**
+ * This is the component for the navigation bar of the application and gives access to mainly news, about us and
+ * the filter-menu. The components state determines which section is open and its all decided with each of the
+ * respective toggle-states.
+ *
+ * The navigation bars also listens to clicks outside an active section and closes that section
+ * when it registers a click.
+ */
 export default function Navbar() {
     const [ showFilter, setShowFilter ] = useState(false);
     const [ toggleAbout, setToggleAbout ] = useState(false);

@@ -1,3 +1,6 @@
+/**
+ * Component for legend bar, showing what color belongs to which category
+ */
 export function Legend() {
 
     return (

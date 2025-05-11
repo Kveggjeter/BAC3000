@@ -1,5 +1,12 @@
 import {ArticleFacts} from "../assets/types/news/ArticleFacts.ts";
 
+/**
+ * Fetches a list/data object from the API-endpoint with all relevant statistics for the
+ * parameterized country, throws an Error if this fails.
+ * This is used with CountriesCompo to give more context to each of the country-polygons.
+ *
+ * @param country The country we want to get statistics from
+ */
 export async function GetCountryNum(country: string) {
     try {
         const response: Response = await fetch("https://api.simplytidings.com/country?country=" + country);

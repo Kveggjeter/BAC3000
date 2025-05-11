@@ -11,7 +11,24 @@ import {GetArticles} from "../../services/getArticles.tsx";
 import {GetCountryNum} from "../../services/getCountryNum.tsx";
 import {ArticleFacts} from "../../assets/types/news/ArticleFacts.ts";
 
-
+/**
+ * This the component responsible for giving functionality and clickaility to each country on the map.
+ *
+ * When the user clicks on a country, the country gets identifies with Turf.js for polygon-matching and the GeoJSON in {@link countries.js}.
+ * The components main task is to make an interactable polygon based on each country and giving statistics
+ * and highlights the country clicked. The statistic includes a total for each article, count of articles per category,
+ * most reported city and most reported source.
+ *
+ * Functionality:
+ * - Makes polygon of each country
+ * - Matching clicks with polygon
+ * - Fetching information about each country
+ * - Showing popup with statistic
+ *
+ * The popup is placed with an absolute position in the middle.
+ *
+ * @component
+ */
 export default function CountriesComp() {
 
     const map = useMap();
@@ -49,14 +66,6 @@ export default function CountriesComp() {
         }
     }, [returnFact])
 
-
-    /**
-     * Removes the previous highlight, adds a new highlight. Iterate countries in the GeoJson.
-     * Connecting each feature from turf with relevant data points. If true,
-     * new layer is made that showcases the polygon that matches the points.
-     *
-     * We get
-     */
     useEffect(() => {
         async function onMapClick(e: L.LeafletMouseEvent) {
 

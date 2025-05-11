@@ -2,6 +2,11 @@ import region from "../../assets/images/region.png";
 import categories from "../../assets/images/categories.png";
 import {UseFilter} from "../../hooks/FilterContext.tsx";
 
+/**
+ * This component is part of the navigation bar and holds the elements where the users toggle which
+ * articles they want to show on the map. UseFilter is the global context, so when this is updated everything else
+ * inside the provider-tag is also updated.
+ */
 export function FilterNav() {
 
     const { filters, toggleFilter } = UseFilter();

@@ -5,9 +5,14 @@ import * as React from "react";
 import {NewsProp} from "../../assets/types/nav/NewsProp.ts";
 
 /**
- * Generates the articles shown in the navbar.
- * TODO: Do something about the css, this should absolutely be modular. Global problems currently
- * TODO: Find another way to fetch data, this is really wierd.
+ * This is the component for the news-section, showing all the news in a column-like section.
+ * When the component is activated by "toggleNews", it fetches all the articles.
+ *
+ * There is also a search bar that can be used to show only the articles with the qualified
+ * searched text in them. The search is quite simple, it shows (although disregarding upper/lowercase) just the thing
+ * entered the search-box.
+ *
+ * If there are no news to be fetched or if it fails, a fallback messages returns
  */
 export function NewsCard({toggleNews}: NewsProp) {
     const [data, setData] = useState<ArticleData[]>([]);

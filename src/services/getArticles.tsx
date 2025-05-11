@@ -1,5 +1,11 @@
 import {ArticleData} from "../assets/types/news/ArticleData.ts";
 
+/**
+ * Fetches articles for the API-endpoint, throws an error if it fails.
+ * This is used pretty much for all instances where we need to use the fetched articles.
+ *
+ * @returns {Promise<ArticleData[]>} a list of articles
+ */
 export async function GetArticles() {
     try {
         const response = await fetch("https://api.simplytidings.com/news");
