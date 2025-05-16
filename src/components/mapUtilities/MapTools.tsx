@@ -1,7 +1,7 @@
 import {AddPoint} from "../../features/map/AddPoint.ts";
 import {useEffect, useRef, useState} from "react";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
-import {GetArticles} from "../../services/getArticles.tsx";
+import {GetArticles} from "../../services/GetArticles.tsx";
 import {MapToolsProps} from "../../assets/types/map/MapToolsProps.ts";
 import {UseFilter} from "../../hooks/FilterContext.tsx";
 

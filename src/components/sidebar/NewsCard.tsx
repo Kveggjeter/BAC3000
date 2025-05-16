@@ -1,5 +1,5 @@
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
-import {GetArticles} from "../../services/getArticles.tsx";
+import {GetArticles} from "../../services/GetArticles.tsx";
 import {useEffect, useState} from "react";
 import * as React from "react";
 import {NewsProp} from "../../assets/types/nav/NewsProp.ts";

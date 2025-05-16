@@ -6,9 +6,7 @@ import * as turf from '@turf/turf';
 // @ts-expect-error
 import {data} from '../../assets/data/countries.js';
 import "../../assets/styles/countryStat.css";
-import {ArticleData} from "../../assets/types/news/ArticleData.ts";
-import {GetArticles} from "../../services/getArticles.tsx";
-import {GetCountryNum} from "../../services/getCountryNum.tsx";
+import {GetCountryNum} from "../../services/GetCountryNum.tsx";
 import {ArticleFacts} from "../../assets/types/news/ArticleFacts.ts";
 
 /**
@@ -32,7 +30,6 @@ import {ArticleFacts} from "../../assets/types/news/ArticleFacts.ts";
 export default function CountriesComp() {
 
     const map = useMap();
-    const [articles, setArticles] = useState<ArticleData[]>([]);
     const [articleFacts, setArticleFacts] = useState<ArticleFacts | null>(null);
     const countriesRef = useRef<HTMLDivElement | null>(null);
     const country: MutableRefObject<string> = useRef("");
@@ -53,12 +50,6 @@ export default function CountriesComp() {
         setReturnFact(null);
         setArticleFacts(null);
     }
-
-    useEffect(() => {
-        GetArticles()
-            .then((result) => setArticles(result))
-            .catch((error) => console.error("Error fetching articles:", error));
-    }, []);
 
     useEffect(() => {
         if (countriesRef.current) {
@@ -107,7 +98,7 @@ export default function CountriesComp() {
             map.off('click', onMapClick);
 
         };
-    }, [map, articles]);
+    }, [map]);
 
     return (
         <>

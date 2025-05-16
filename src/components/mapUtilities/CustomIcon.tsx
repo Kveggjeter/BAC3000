@@ -15,7 +15,7 @@ import markerShadow from "leaflet/dist/images/marker-shadow.png";
  * @param cyName name of the new category
  * @returns {Icon} A customized icon
  */
-export function customIcon(cyName: string) {
+export function customIcon(cyName: string): Icon {
     const iconUrl = getIcon(cyName);
 
     return new Icon({

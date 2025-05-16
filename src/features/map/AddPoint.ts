@@ -16,10 +16,10 @@ export function AddPoint({ setMarkers, articles }: AddPointProps) {
 
         for (const article of articles) {
             if (!article) continue;
-            const { x, y, category, city } = article;
+            const { x, y, category, title} = article;
 
             if (!x || !y)  {
-                console.warn(`Skipping article: No coordinates found for city "${city}" with x = ${x}, y = ${y}`);
+                console.warn(`Skipping article: No coordinates found for article: ${title}" with x = ${x}, y = ${y}`);
                 continue;
             }
             const icon = customIcon(category);

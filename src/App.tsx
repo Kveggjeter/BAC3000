@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom'
-import { Home } from './pages/home.tsx';
+import { Home } from "./pages/Home.tsx"
 
 /**
  * Main component for the app. Currently, no routes, but will be added when the user-system is
