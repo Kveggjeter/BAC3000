@@ -8,19 +8,31 @@ import unknown from "../../assets/images/custom/mixed.png";
 import {Icon} from "leaflet";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-
-export function customIcon(cyName: string) {
+/**
+ * Returns a customized icon based on the news-category.
+ * Used to represent the different categories on the map visually.
+ *
+ * @param cyName name of the new category
+ * @returns {Icon} A customized icon
+ */
+export function customIcon(cyName: string): Icon {
     const iconUrl = getIcon(cyName);
 
     return new Icon({
         iconUrl,
-        iconSize: [115, 57],
+        iconSize: [105, 57],
         popupAnchor: [0, -30],
         shadowUrl: markerShadow,
         shadowAnchor: [13, 28]
     });
 }
 
+/**
+ * Helper-function for choosing the correct icon based on category
+ *
+ * @param category category for the news article
+ * @returns {string} return the correct icon to use
+ */
 function getIcon (category: string) {
     switch (category) {
         case "Business":

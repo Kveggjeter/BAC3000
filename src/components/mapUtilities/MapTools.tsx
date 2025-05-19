@@ -1,13 +1,18 @@
 import {AddPoint} from "../../features/map/AddPoint.ts";
 import {useEffect, useRef, useState} from "react";
 import {ArticleData} from "../../assets/types/news/ArticleData.ts";
-import {GetArticles} from "../../services/getArticles.tsx";
+import {GetArticles} from "../../services/GetArticles.tsx";
 import {MapToolsProps} from "../../assets/types/map/MapToolsProps.ts";
 import {UseFilter} from "../../hooks/FilterContext.tsx";
 
 /**
- * Temporarily function to fetch news.
- * @constructor
+ * Component for fetching news articles and converting them to markers on the map
+ *
+ * Uses active filters from FilterContext to decide which articles that are being shown on the map.
+ * The filters always starts empty, so all articles are shown when first loading the map.
+ * After loading and passing through filtration, the articles are sent to the function {@link AddPoint.ts}
+ *
+ * The component does not return anything in itself, but are mainly used for handling dataflow andt related tasks.
  */
 export default function MapTools({ setMarkers }: MapToolsProps) {
     const hasFetched = useRef(false);
@@ -33,14 +38,15 @@ export default function MapTools({ setMarkers }: MapToolsProps) {
         if (articles.length === 0) return;
 
         const filteredArticles = articles.filter((article) => {
+            if (article.continent.toLowerCase() == "south america")
+                article.continent = "South-America";
+            if (article.continent.toLowerCase() == "north america")
+                article.continent = "North-America";
             if (!article || !article.continent || !article.category) return;
             if (filters.regions.length > 0 && !filters.regions.includes(article.continent)) {
                 return false;
             }
-            if (filters.category.length > 0 && !filters.category.includes(article.category)) {
-                return false;
-            }
-            return true;
+            return !(filters.category.length > 0 && !filters.category.includes(article.category));
         });
 
         setMarkers([]);
