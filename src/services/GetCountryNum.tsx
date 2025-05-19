@@ -9,7 +9,7 @@ import {ArticleFacts} from "../assets/types/news/ArticleFacts.ts";
  */
 export async function GetCountryNum(country: string) {
     try {
-        const response: Response = await fetch("http://localhost:8080/country?country=" + country);
+        const response: Response = await fetch("https://api.simplytidings.com/country?country=" + country);
         if (!response.ok) {
             throw new Error("Network response was not ok.");
         }
