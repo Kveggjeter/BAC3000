@@ -1,9 +1,7 @@
-# World news-map
+# Simply Tidings
 
-This is the frontend of the world news-map webapplication. 
-
-Currently only a shell of the broader idea, but more detailed information will come soon. 
-
+This is the frontend of the news GIS [Simply Tidings](https://www.simplytidings.com/)
+![Website](https://i.imgur.com/vZxr6Xq.png)
 ## About this project
 
 This project is being worked on soley by me. This is my bachelor project and its being conducted under the auspices of [University of south-eastern Norway](https://www.usn.no/)
