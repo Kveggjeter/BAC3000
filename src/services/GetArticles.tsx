@@ -8,7 +8,7 @@ import {ArticleData} from "../assets/types/news/ArticleData.ts";
  */
 export async function GetArticles(): Promise<ArticleData[]> {
     try {
-        const response = await fetch("https://api.simplytidings.com/news");
+        const response = await fetch("http://localhost:8080/news");
         if (!response.ok) {
             console.log("Network response was not ok.");
         }

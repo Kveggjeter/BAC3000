@@ -29,9 +29,40 @@
 }
 
 @media screen and (max-width: 600px) {
-    
+
+    .sidenav {
+        margin: 0;
+    }
+
     .sidenav.active {
         width: 100vw;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .sidenav.active .escapeBtn {
+        display: flex;
+        flex-direction: row;
+        visibility: visible;
+        left: 10px;
+        font-family: "Courier New", Courier, monospace;
+        border-radius: 4px;
+        border: none;
+        gap: 10px;
+        font-size: 18px;
+    }
+
+    .sidenav.active .escapeBtn img {
+        height: 30px;
+    }
+
+    .sidenav.active .escapeBtn img:hover {
+        transform: scale(1.1);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .sidenav.active .escapeBtn p {
+        align-self: center;
     }
 
     .newsPage.active,
@@ -52,10 +83,6 @@
         padding-left: 10px;
     }
 
-    .sidenavContent {
-        max-height: 75vh;
-    }
-    
 }
 
 /*  Header */
@@ -82,6 +109,11 @@
     padding: 20px 5px 15px 5px;
     width: 100%;
     border-bottom: black 1px dashed;
+}
+
+.escapeBtn {
+    position: absolute;
+    visibility: hidden;
 }
 
 .sidenav:hover .logoContainer,
@@ -191,26 +223,54 @@ ul li .liText:active::before {
     max-height: 0;
     opacity: 0;
     tab-index: 0;
-    overflow-y: auto;
-}
-
-.aboutPage.active {
-    padding: 20px;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
 }
 
 .abTitle {
     margin-bottom: 10px;
 }
 
-.newsPage.active,
 .aboutPage.active {
-    padding-top: 20px;
-    max-height: 500px;
+    animation: fadeInAbout 0.5s forwards;
     max-width: 350px;
-    opacity: 1;
-    transition: max-height 0.5s ease, opacity 0.5s ease;
+    padding: 20px;
+    overflow-y: auto;
 }
 
+.newsPage.active {
+    animation: fadeInNews 0.7s ease forwards;
+    padding-top: 20px;
+    overflow-y: auto;
+    max-width: 350px;
+}
+
+@keyframes fadeInAbout {
+    0% {
+        max-height: 0;
+        opacity: 0;
+    }
+    100% {
+        max-height: 500px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInNews {
+    0% {
+        max-height: 0;
+        height: 0;
+        opacity: 0;
+    }
+    100% {
+        max-height: 500px;
+        height: 500px;
+        opacity: 1;
+    }
+}
+
+.newsPage.active {
+    padding-bottom: 20px;
+}
 
 .nwp {
     font-family: "Courier New", Courier, monospace;

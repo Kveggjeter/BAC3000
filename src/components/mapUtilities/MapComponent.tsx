@@ -2,13 +2,14 @@ import {useState} from "react";
 import MapTools from "./MapTools.tsx";
 import "leaflet/dist/leaflet.css";
 import '../../assets/styles/styles.css'
-import {MapContainer, TileLayer, Marker, Popup, LayersControl } from "react-leaflet";
+import {MapContainer, Marker, Popup} from "react-leaflet";
 import L, {divIcon, point} from "leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import {Cluster} from "../../assets/types/map/Cluster.ts";
 import CountriesComp from "./CountriesComp.tsx";
 import {MarkerData} from "../../assets/types/map/SetMarkerProps.ts";
 import {Legend} from "./Legend.tsx";
+import MapLayerToggle from "./MapLayerToggle.tsx";
 
 /**
  * Map component, decides how everything will look like and what attributes they should have.
@@ -40,7 +41,6 @@ export default function MapComponent() {
         });
     };
 
-    const { BaseLayer } = LayersControl;
 
     return (
         <main>
@@ -56,20 +56,7 @@ export default function MapComponent() {
                 >
                 <Legend/>
                 <CountriesComp/>
-                <LayersControl>
-                    <BaseLayer checked name ="OSM">
-                        <TileLayer
-                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}{r}.png"
-                        />
-                    </BaseLayer>
-                    <BaseLayer name ="Dark">
-                        <TileLayer
-                            attribution='© OpenStreetMap contributors &copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a>'
-                            url="https://tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=Iec7Dc3SZlSiI8kUpdY7m4ARDo4NQqGHpKr0upWdlHb3TY7638UgTm4K9v43kJ4c"
-                        />
-                    </BaseLayer>
-                </LayersControl>
+                <MapLayerToggle/>
                 <MarkerClusterGroup
                     chunkedLoading
                     iconCreateFunction={createCustomClusterIcon}

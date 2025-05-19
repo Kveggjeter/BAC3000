@@ -20,7 +20,7 @@ export function customIcon(cyName: string): Icon {
 
     return new Icon({
         iconUrl,
-        iconSize: [115, 57],
+        iconSize: [105, 57],
         popupAnchor: [0, -30],
         shadowUrl: markerShadow,
         shadowAnchor: [13, 28]
