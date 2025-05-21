@@ -50,7 +50,7 @@ export function NewsCard({toggleNews}: NewsProp) {
         <> <div id="nwp">
             <div className="nwp">
                 <label className="searchLabel">Type a word of interest! {'\u{1F50E}'}</label>
-                <input inputMode="none" type="text" className="search" placeholder="Search.." value={value} onChange={handleChange} autoFocus></input>
+                <input type="text" className="search" placeholder="Search.." value={value} onChange={handleChange} autoFocus></input>
             </div>
             {filterArticle.map((article) => {
                 if (!article) return null;
